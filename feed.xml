@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Field notes — Zheng Xiangsheng</title>
+    <link>https://zhengxs.com/notes/</link>
+    <description>Working notes on transformation optics, geodesic lenses and quantum optics.</description>
+    <language>en-ca</language>
+    <lastBuildDate>Mon, 02 Nov 2026 09:00:00 -0500</lastBuildDate>
+    <atom:link href="https://zhengxs.com/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Why a lens is a surface</title>
+      <link>https://zhengxs.com/notes/why-a-lens-is-a-surface/</link>
+      <guid isPermaLink="true">https://zhengxs.com/notes/why-a-lens-is-a-surface/</guid>
+      <pubDate>Mon, 02 Nov 2026 09:00:00 -0500</pubDate>
+      <description>The metric equivalence that turns a gradient-index problem into a problem of curved geometry — and why the Luneburg lens is exactly a sphere.</description>
+    </item>
+
+    <item>
+      <title>Tracing a ray through the Morse lens</title>
+      <link>https://zhengxs.com/notes/tracing-the-morse-lens/</link>
+      <guid isPermaLink="true">https://zhengxs.com/notes/tracing-the-morse-lens/</guid>
+      <pubDate>Sat, 24 Oct 2026 09:00:00 -0400</pubDate>
+      <description>Four equations, a step size, and a convergence check: what it takes to trust a numerically traced ray, and what the Morse profile actually does.</description>
+    </item>
+
+    <item>
+      <title>One photon at a time</title>
+      <link>https://zhengxs.com/notes/one-photon-at-a-time/</link>
+      <guid isPermaLink="true">https://zhengxs.com/notes/one-photon-at-a-time/</guid>
+      <pubDate>Mon, 12 Oct 2026 09:00:00 -0400</pubDate>
+      <description>Interference without a second photon, the quantitative trade between visibility and path information, and what a teaching lab really measures.</description>
+    </item>
+  </channel>
+</rss>

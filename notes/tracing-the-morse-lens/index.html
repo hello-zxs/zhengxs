@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tracing a ray through the Morse lens — Zheng Xiangsheng</title>
+<meta name="description" content="A ray tracer is a small experiment in numerical geometry: the ray equation, RK4, step-size convergence, and what the Morse profile actually does.">
+<meta name="author" content="Zheng Xiangsheng">
+<link rel="canonical" href="https://zhengxs.com/notes/tracing-the-morse-lens/">
+<meta name="theme-color" content="#08090B">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Zheng Xiangsheng">
+<meta property="og:title" content="Tracing a ray through the Morse lens — Zheng Xiangsheng">
+<meta property="og:description" content="A ray tracer is a small experiment in numerical geometry: the ray equation, RK4, step-size convergence, and what the Morse profile actually does.">
+<meta property="og:url" content="https://zhengxs.com/notes/tracing-the-morse-lens/">
+<meta property="og:image" content="https://zhengxs.com/assets/images/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_CA">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tracing a ray through the Morse lens — Zheng Xiangsheng">
+<meta name="twitter:description" content="A ray tracer is a small experiment in numerical geometry: the ray equation, RK4, step-size convergence, and what the Morse profile actually does.">
+<meta name="twitter:image" content="https://zhengxs.com/assets/images/og.png">
+
+<link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="alternate" type="application/rss+xml" title="Field notes — Zheng Xiangsheng" href="/feed.xml">
+<link rel="me" href="https://github.com/hello-zxs">
+
+<link rel="preload" href="/assets/fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/plex-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script>
+  document.documentElement.classList.add('js');
+  window.addEventListener('error', function () {
+    document.documentElement.classList.remove('js');
+  });
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Tracing a ray through the Morse lens",
+  "datePublished": "2026-10-24",
+  "author": {
+    "@type": "Person",
+    "name": "Zheng Xiangsheng"
+  },
+  "url": "https://zhengxs.com/notes/tracing-the-morse-lens/"
+}
+</script>
+</head>
+
+<body class="page-paper">
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" data-nav>
+  <div class="nav__inner">
+    <a class="brand" href="/" aria-label="zhengxs — home">
+      <svg class="brand__mark" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <circle cx="10" cy="10" r="6.6" stroke="currentColor" stroke-width="1"/>
+        <circle cx="10" cy="10" r="1.8" fill="#FF6A3D"/>
+        <path d="M10 .6v2.2M10 17.2v2.2M.6 10h2.2M17.2 10h2.2" stroke="currentColor" stroke-width="1"/>
+      </svg>
+      <span>zhengxs</span><span class="brand__dot" aria-hidden="true"></span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="/research/">Research</a><a href="/notes/" class="is-active" aria-current="page">Notes</a><a href="/publications/">Publications</a><a href="/cv/">CV</a><a href="/about/">About</a>
+    </nav>
+    <div class="nav__meta">
+      <span class="nav__clock" data-clock>LONDON <b>--:--</b></span>
+      <a class="nav__mail" href="mailto:helloworld.3a@gmail.com">Email</a>
+      <button class="nav__menu" type="button" data-menu-open aria-expanded="false" aria-controls="site-menu">
+        <span class="nav__menu-lines" aria-hidden="true"><i></i><i></i></span>
+        <span class="open-label">Menu</span><span class="close-label">Close</span>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="menu" id="site-menu" aria-hidden="true">
+  <nav class="menu__nav" aria-label="Menu">
+    <a href="/"><span>Home</span><em aria-hidden="true">01</em></a><a href="/research/"><span>Research</span><em aria-hidden="true">02</em></a><a href="/notes/" class="is-active"><span>Notes</span><em aria-hidden="true">03</em></a><a href="/publications/"><span>Publications</span><em aria-hidden="true">04</em></a><a href="/cv/"><span>CV</span><em aria-hidden="true">05</em></a><a href="/about/"><span>About</span><em aria-hidden="true">06</em></a><a href="/zh/"><span>中文</span><em aria-hidden="true">07</em></a>
+  </nav>
+  <div class="menu__foot">
+    <div>Physics MSc · Western University<br>London, Ontario, Canada</div>
+    <div><a href="mailto:helloworld.3a@gmail.com">helloworld.3a@gmail.com</a><br><a href="https://github.com/hello-zxs">github.com/hello-zxs</a></div>
+  </div>
+</div>
+
+<main id="main">
+<div class="read-progress" data-progress></div>
+
+<header class="note-head">
+  <div class="wrap wrap--narrow">
+    <a class="note-head__back" href="/notes/"><svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 8H3M7 3.5 2.5 8 7 12.5"/></svg> Field notes</a>
+    <p class="kicker"><span class="kicker__no">Note 002</span> Numerics</p>
+    <h1>Tracing a ray through the Morse lens</h1>
+    <p class="note-head__dek">A ray tracer is a small experiment in numerical geometry: four equations, a step size, and a convergence check. The hardest part is deciding what the picture means.</p>
+    <div class="note-meta">
+      <span class="author">Zheng Xiangsheng</span>
+      <span>24 Oct 2026</span>
+      <span>11 min read</span>
+      <span>Working note</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap wrap--narrow">
+  <figure class="note-figure">
+    <div class="figure-scroll">
+      <picture>
+        <source media="(max-width: 700px)" srcset="/assets/figures/fig-rays-mobile.svg">
+        <img src="/assets/figures/fig-rays-light.svg" alt="Three panels of ray traces through Luneburg, Morse and Eaton refractive-index profiles, clipped at the lens rim.">
+      </picture>
+    </div>
+    <figcaption><b>Fig. 1</b> — Parallel rays through three profiles: (A) Luneburg, $B=\tfrac12$; (B) intermediate Morse, $B=\tfrac34$; (C) Eaton, $B=1$. Paths are clipped at the lens rim. The caustic moves inward as $B$ increases, and at $B=1$ the rays turn around.</figcaption>
+  </figure>
+</div>
+
+<article class="note-body prose">
+  <p>A ray tracer is easy to write and hard to trust. The equation is short, the integrator is standard, and the picture is convincing. The work is in the checks: does the step size matter, does the ray invariant hold, and is the feature you are looking at a property of the optics rather than of the discretisation?</p>
+
+  <h2>The equation</h2>
+
+  <p>Fermat's principle gives the ray equation</p>
+
+  <p class="math-display">\[ \frac{d}{ds}\left(n\frac{d\mathbf{r}}{ds}\right)=\nabla n, \]</p>
+
+  <p>with $s$ the Euclidean arc length. Writing $\mathbf{u}=d\mathbf{r}/ds$, this is</p>
+
+  <p class="math-display">\[ \frac{d\mathbf{u}}{ds}=\frac{\nabla n-(\nabla n\cdot\mathbf{u})\,\mathbf{u}}{n}. \]</p>
+
+  <p>The second form is convenient because it keeps $\lvert\mathbf{u}\rvert=1$ by construction. It is also the form that survives the index step at the lens rim: $n$ is continuous there for the profiles considered here, even though $\nabla n$ is not.<sup class="fn-ref">1</sup></p>
+
+  <aside class="sidenote"><b>1</b> The parameter $s$ is Euclidean arc length, not optical path. Inside the medium the phase velocity is $c/n$, but the ray geometry is still parameterised by $s$; the optical path appears in the phase, not in the trajectory.</aside>
+
+  <p>For the Luneburg profile, $n^{2}=2-r^{2}$ and $\nabla n=-\mathbf{r}/n$. The equation becomes</p>
+
+  <p class="math-display">\[ \frac{d\mathbf{u}}{ds}=\frac{-\mathbf{r}+(\mathbf{r}\cdot\mathbf{u})\,\mathbf{u}}{n^{2}}, \]</p>
+
+  <p>which is smooth inside the lens and straight outside. The Morse family replaces $n^{2}$ by</p>
+
+  <p class="math-display">\[ n^{2}(r)=2r^{-2+1/B}-r^{-2+2/B}. \]</p>
+
+  <p>For $B&gt;\tfrac12$ the index diverges at the origin, so the integration must stay away from $r=0$; parallel rays with nonzero impact parameter do, but the step size still has to resolve the turning region.</p>
+
+  <h2>The integrator</h2>
+
+  <p>I use classical RK4 in Cartesian coordinates. Cartesian avoids the $1/r$ terms and the coordinate singularity of polar coordinates; the price is that the lens rim is a circle rather than a coordinate line, which a small step handles.</p>
+
+  <pre><code>import math
+
+def grad_n(x, y, B):
+    r = math.hypot(x, y)
+    if r &gt;= 1.0:
+        return 1.0, 0.0, 0.0
+    p, q = -2.0 + 1.0 / B, 1.0 / B
+    n = math.sqrt(2.0 * r**p - r**(p + q))
+    dn = (p * r**(p - 1) - 0.5 * (p + q) * r**(p + q - 1)) / n
+    return n, dn * x / r, dn * y / r
+
+def rhs(x, y, vx, vy, B):
+    n, gx, gy = grad_n(x, y, B)
+    dot = gx * vx + gy * vy
+    return vx, vy, (gx - dot * vx) / n, (gy - dot * vy) / n
+
+def trace(b, B, h=0.0025, x0=-1.3):
+    x, y, vx, vy = x0, b, 1.0, 0.0
+    pts = [(x, y)]
+    for _ in range(8000):
+        k1 = rhs(x, y, vx, vy, B)
+        k2 = rhs(x + h*k1[0]/2, y + h*k1[1]/2, vx + h*k1[2]/2, vy + h*k1[3]/2, B)
+        k3 = rhs(x + h*k2[0]/2, y + h*k2[1]/2, vx + h*k2[2]/2, vy + h*k2[3]/2, B)
+        k4 = rhs(x + h*k3[0], y + h*k3[1], vx + h*k3[2], vy + h*k3[3], B)
+        x  += h*(k1[0] + 2*k2[0] + 2*k3[0] + k4[0]) / 6
+        y  += h*(k1[1] + 2*k2[1] + 2*k3[1] + k4[1]) / 6
+        vx += h*(k1[2] + 2*k2[2] + 2*k3[2] + k4[2]) / 6
+        vy += h*(k1[3] + 2*k2[3] + 2*k3[3] + k4[3]) / 6
+        pts.append((x, y))
+        if x &gt; 1.45 or math.hypot(x, y) &gt; 2.0:
+            break
+    return pts</code></pre>
+
+  <p>The stop condition is part of the model. For the figures on this page I stop at the first rim crossing, so the panels show the paths inside the lens; for other questions the interesting part may be the exit field.</p>
+
+  <h2>Does the step size matter?</h2>
+
+  <p>Take a bundle of parallel rays with impact parameters $b\in[-0.8,0.8]$, find the first axis crossing of each ray, and look at the mean and the RMS spread. The table compares four step sizes. The reference is not an analytic formula but the finest integration; the point is to see what changes.</p>
+
+  <table>
+    <caption>TABLE I. Focus statistics versus RK4 step size (16 rays, $x_0=-1.3$).</caption>
+    <thead>
+      <tr><th>$h$</th><th>$\bar{x}$, $B=\tfrac12$</th><th>RMS, $B=\tfrac12$</th><th>$\bar{x}$, $B=\tfrac34$</th><th>RMS, $B=\tfrac34$</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>0.01</td><td>1.00033</td><td>0.00192</td><td>0.24373</td><td>0.17095</td></tr>
+      <tr><td>0.005</td><td>1.00039</td><td>0.00035</td><td>0.24406</td><td>0.17125</td></tr>
+      <tr><td>0.0025</td><td>1.00003</td><td>0.00042</td><td>0.24392</td><td>0.17117</td></tr>
+      <tr><td>0.00125</td><td>1.00008</td><td>0.00008</td><td>0.24394</td><td>0.17116</td></tr>
+    </tbody>
+  </table>
+
+  <p>Two things are happening. The Luneburg focus converges to $x=1$ and the RMS spread falls with the step; that is the integrator behaving as expected. The Morse $B=\tfrac34$ statistics stop changing at about four decimal places while the RMS spread stays near $0.17$. That residual is not numerical error. It is the aberration of the profile: the bundle does not have a point focus.<sup class="fn-ref">2</sup></p>
+
+  <aside class="sidenote"><b>2</b> A caustic is an envelope of rays, not a point. The mean crossing is a useful summary, but the RMS spread is the honest measure of how tightly the bundle focuses.</aside>
+
+  <h2>What the three panels show</h2>
+
+  <p>Panel A is the Luneburg lens. The parallel bundle focuses at the rear rim; the caustic is a point to the accuracy of the table. Panel B is the intermediate Morse profile. The caustic has moved inward and broadened; the rays cross the axis over a range of positions. Panel C is Eaton: the index diverges at the origin, the rays turn before reaching it, and the bundle leaves the lens on the entrance side.</p>
+
+  <p>The visual difference between B and C is not a difference in numerical quality. It is the profile changing from a focusing lens into a retroreflector. The same integrator, step, and stop condition produce all three panels.</p>
+
+  <h2>What I would check next</h2>
+
+  <p>Three checks would make the tracer more useful. First, a conserved quantity: for a time-independent index the ray invariant $n\cos\psi$ should be constant along the path, and its drift is a cheap error monitor. Second, an analytic limit: the Luneburg case has a closed-form focus, so it can calibrate the integrator independently of the surface construction. Third, a convergence study in the surface metric, not only in the bulk: the geodesic integration and the GRIN integration should agree at the same rate.</p>
+
+  <p>None of these is difficult. They are the difference between a picture and an experiment.</p>
+
+  <h2>References</h2>
+  <ol class="reading-list">
+    <li>R. K. Luneburg, <em>Mathematical Theory of Optics</em>. Brown University Press, 1944.</li>
+    <li>M. Šarbort and T. Tyc, “Spherical media and geodesic lenses in geometrical optics,” <em>J. Opt.</em> <strong>14</strong>, 075103 (2012). <a href="https://doi.org/10.1088/2040-8978/14/7/075103">doi</a></li>
+    <li>H. Chen, “The Morse lens,” arXiv:2002.03884 (2020). <a href="https://arxiv.org/abs/2002.03884">arXiv</a></li>
+    <li>W. H. Press et al., <em>Numerical Recipes</em>, 3rd ed. Cambridge University Press, 2007. (RK4 and step-size control.)</li>
+  </ol>
+</article>
+
+<div class="note-end">
+  <span>Note 002 · Working note, not a peer-reviewed paper</span>
+  <span>Corrections: <a href="mailto:helloworld.3a@gmail.com">email</a></span>
+</div>
+
+<nav class="note-nav" aria-label="Notes">
+  <a href="/notes/why-a-lens-is-a-surface/">
+    <span><svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 8H3M7 3.5 2.5 8 7 12.5"/></svg> Previous note</span>
+    <strong>Why a lens is a surface</strong>
+  </a>
+  <a href="/notes/one-photon-at-a-time/">
+    <span>Next note <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10.5M9 3.5 13.5 8 9 12.5"/></svg></span>
+    <strong>One photon at a time</strong>
+  </a>
+</nav>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__cta">
+      <div>
+        <p class="kicker kicker--light">Contact</p>
+        <h2>Let's talk about <em>light.</em></h2>
+        <a class="footer__email" href="mailto:helloworld.3a@gmail.com">helloworld.3a@gmail.com <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6"/></svg></a>
+      </div>
+      <a class="footer__toplink" href="#">Back to top <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13.5V2.5M3.5 7 8 2.5 12.5 7"/></svg></a>
+    </div>
+    <div class="footer__grid">
+      <div class="footer__col">
+        <h3>Explore</h3>
+        <a href="/research/">Research</a>
+        <a href="/notes/">Field notes</a>
+        <a href="/publications/">Publications</a>
+        <a href="/cv/">Curriculum vitae</a>
+        <a href="/about/">About</a>
+      </div>
+      <div class="footer__col">
+        <h3>Elsewhere</h3>
+        <a href="https://github.com/hello-zxs">GitHub <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6"/></svg></a>
+        <a href="mailto:helloworld.3a@gmail.com">Email</a>
+        <a href="/feed.xml">RSS</a>
+        <a href="/zh/" lang="zh-Hans">中文</a>
+      </div>
+      <div class="footer__col">
+        <h3>Colophon</h3>
+        <p>Designed and built by hand. Set in Newsreader and IBM Plex. Figures computed in the browser. No analytics, no trackers.</p>
+      </div>
+      <div class="footer__col">
+        <h3>Location</h3>
+        <p>London, Ontario<br>42.9849° N, 81.2453° W</p>
+        <p class="mono"><span data-clock>--:--</span> local time</p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Zheng Xiangsheng</span>
+      <span>zhengxs.com <span class="dotsep">/</span> Physics, geometry, light</span>
+      <span>Last updated 02 Nov 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script defer src="/assets/js/site.js"></script>
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/auto-render.min.js"></script>
+</body>
+</html>

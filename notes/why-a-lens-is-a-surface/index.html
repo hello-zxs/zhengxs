@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why a lens is a surface — Zheng Xiangsheng</title>
+<meta name="description" content="A gradient-index lens and a curved surface can guide light along the same curves. The metric equivalence behind geodesic lenses, derived from Fermat&#x27;s principle.">
+<meta name="author" content="Zheng Xiangsheng">
+<link rel="canonical" href="https://zhengxs.com/notes/why-a-lens-is-a-surface/">
+<meta name="theme-color" content="#08090B">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Zheng Xiangsheng">
+<meta property="og:title" content="Why a lens is a surface — Zheng Xiangsheng">
+<meta property="og:description" content="A gradient-index lens and a curved surface can guide light along the same curves. The metric equivalence behind geodesic lenses, derived from Fermat&#x27;s principle.">
+<meta property="og:url" content="https://zhengxs.com/notes/why-a-lens-is-a-surface/">
+<meta property="og:image" content="https://zhengxs.com/assets/images/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_CA">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Why a lens is a surface — Zheng Xiangsheng">
+<meta name="twitter:description" content="A gradient-index lens and a curved surface can guide light along the same curves. The metric equivalence behind geodesic lenses, derived from Fermat&#x27;s principle.">
+<meta name="twitter:image" content="https://zhengxs.com/assets/images/og.png">
+
+<link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="alternate" type="application/rss+xml" title="Field notes — Zheng Xiangsheng" href="/feed.xml">
+<link rel="me" href="https://github.com/hello-zxs">
+
+<link rel="preload" href="/assets/fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/plex-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script>
+  document.documentElement.classList.add('js');
+  window.addEventListener('error', function () {
+    document.documentElement.classList.remove('js');
+  });
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Why a lens is a surface",
+  "datePublished": "2026-11-02",
+  "author": {
+    "@type": "Person",
+    "name": "Zheng Xiangsheng"
+  },
+  "url": "https://zhengxs.com/notes/why-a-lens-is-a-surface/"
+}
+</script>
+</head>
+
+<body class="page-paper">
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" data-nav>
+  <div class="nav__inner">
+    <a class="brand" href="/" aria-label="zhengxs — home">
+      <svg class="brand__mark" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <circle cx="10" cy="10" r="6.6" stroke="currentColor" stroke-width="1"/>
+        <circle cx="10" cy="10" r="1.8" fill="#FF6A3D"/>
+        <path d="M10 .6v2.2M10 17.2v2.2M.6 10h2.2M17.2 10h2.2" stroke="currentColor" stroke-width="1"/>
+      </svg>
+      <span>zhengxs</span><span class="brand__dot" aria-hidden="true"></span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="/research/">Research</a><a href="/notes/" class="is-active" aria-current="page">Notes</a><a href="/publications/">Publications</a><a href="/cv/">CV</a><a href="/about/">About</a>
+    </nav>
+    <div class="nav__meta">
+      <span class="nav__clock" data-clock>LONDON <b>--:--</b></span>
+      <a class="nav__mail" href="mailto:helloworld.3a@gmail.com">Email</a>
+      <button class="nav__menu" type="button" data-menu-open aria-expanded="false" aria-controls="site-menu">
+        <span class="nav__menu-lines" aria-hidden="true"><i></i><i></i></span>
+        <span class="open-label">Menu</span><span class="close-label">Close</span>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="menu" id="site-menu" aria-hidden="true">
+  <nav class="menu__nav" aria-label="Menu">
+    <a href="/"><span>Home</span><em aria-hidden="true">01</em></a><a href="/research/"><span>Research</span><em aria-hidden="true">02</em></a><a href="/notes/" class="is-active"><span>Notes</span><em aria-hidden="true">03</em></a><a href="/publications/"><span>Publications</span><em aria-hidden="true">04</em></a><a href="/cv/"><span>CV</span><em aria-hidden="true">05</em></a><a href="/about/"><span>About</span><em aria-hidden="true">06</em></a><a href="/zh/"><span>中文</span><em aria-hidden="true">07</em></a>
+  </nav>
+  <div class="menu__foot">
+    <div>Physics MSc · Western University<br>London, Ontario, Canada</div>
+    <div><a href="mailto:helloworld.3a@gmail.com">helloworld.3a@gmail.com</a><br><a href="https://github.com/hello-zxs">github.com/hello-zxs</a></div>
+  </div>
+</div>
+
+<main id="main">
+<div class="read-progress" data-progress></div>
+
+<header class="note-head">
+  <div class="wrap wrap--narrow">
+    <a class="note-head__back" href="/notes/"><svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 8H3M7 3.5 2.5 8 7 12.5"/></svg> Field notes</a>
+    <p class="kicker"><span class="kicker__no">Note 001</span> Transformation optics</p>
+    <h1>Why a lens is a surface</h1>
+    <p class="note-head__dek">A gradient-index lens and a curved sheet of glass can guide light along the same curves. The equivalence is one line of metric algebra — and it turns lens design into geometry.</p>
+    <div class="note-meta">
+      <span class="author">Zheng Xiangsheng</span>
+      <span>02 Nov 2026</span>
+      <span>9 min read</span>
+      <span>Working note</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap wrap--narrow">
+  <figure class="note-figure">
+    <div class="figure-scroll">
+      <picture>
+        <source media="(max-width: 700px)" srcset="/assets/figures/fig-equivalence-mobile.svg">
+        <img src="/assets/figures/fig-equivalence-light.svg" alt="A gradient-index disc with converging rays next to a curved surface of revolution with a geodesic.">
+      </picture>
+    </div>
+    <figcaption><b>Fig. 1</b> — Rays in a gradient-index medium and the equivalent surface of revolution. Under the metric equivalence, the rays and the geodesics are the same curves.</figcaption>
+  </figure>
+</div>
+
+<article class="note-body prose">
+  <p>A lens is usually a piece of glass with a shaped surface. A <strong>geodesic lens</strong> is a piece of geometry. The two ideas meet through a change of variables: under the right conditions, the rays inside a gradient-index medium are exactly the geodesics on a curved surface. The equivalence is not an analogy. It is an identity between two metrics.<sup class="fn-ref">1</sup></p>
+
+  <aside class="sidenote"><b>1</b> The treatment here is scalar and geometric. Polarisation, Fresnel coefficients and wave effects are outside it; the equivalence is a statement about rays, not fields.</aside>
+
+  <h2>Fermat's principle is a metric</h2>
+
+  <p>In a medium with refractive index $n(\mathbf{r})$, Fermat's principle says that a ray makes the optical path</p>
+
+  <p class="math-display">\[ S=\int n(\mathbf{r})\,ds \]</p>
+
+  <p>stationary, where $ds$ is the Euclidean arc length. The resulting ray equation is</p>
+
+  <p class="math-display">\[ \frac{d}{ds}\left(n\frac{d\mathbf{r}}{ds}\right)=\nabla n. \]</p>
+
+  <p>There is a more geometric way to say the same thing. The optical metric is $g_{ij}=n^{2}\delta_{ij}$, and the rays are its geodesics. A medium is a geometry in disguise. This is the point of view that transformation optics takes seriously: change coordinates, and the geometry changes; Maxwell's equations do not. The material parameters absorb the Jacobian.</p>
+
+  <h2>A surface with the same metric</h2>
+
+  <p>Now consider a surface of revolution generated by a profile $z(\rho)$, with coordinates $(\rho,\varphi)$. Its metric is</p>
+
+  <p class="math-display">\[ ds_{\Sigma}^{2}=\left[1+\left(\frac{dz}{d\rho}\right)^{2}\right]d\rho^{2}+\rho^{2}d\varphi^{2}. \]</p>
+
+  <p>We want this to be the optical metric of a radially symmetric medium, $n^{2}(r)\left(dr^{2}+r^{2}d\varphi^{2}\right)$. Matching the two terms gives three relations:</p>
+
+  <p class="math-display">\[ \rho=n(r)\,r,\qquad ds=n(r)\,dr, \]</p>
+
+  <p class="math-display">\[ dz^{2}=ds^{2}-d\rho^{2}. \]</p>
+
+  <p>The first relation defines the projected radius. The second identifies optical arc length with arc length on the surface. The third fixes the height. Differentiating $\rho=nr$ gives $d\rho/dr=n+rn'$, so the first two relations imply</p>
+
+  <p class="math-display">\[ s'(\rho)\,(n+rn')=n,\qquad s'(\rho)\equiv\frac{ds}{d\rho}. \]</p>
+
+  <p>Once $s'(\rho)$ is known, the surface follows by quadrature:</p>
+
+  <p class="math-display">\[ z(\rho)=\int_{0}^{\rho}\sqrt{s'(\xi)^{2}-1}\;d\xi. \]</p>
+
+  <p>A real surface requires $s'(\rho)\ge1$. A closed lens requires more: the integral must remain finite at the rim, and the tangent must turn vertical there. Those are geometric conditions, not fabrication details — although they become fabrication details very quickly.</p>
+
+  <h2>The Luneburg lens is a sphere</h2>
+
+  <p>The Luneburg profile is the cleanest example. It is</p>
+
+  <p class="math-display">\[ n^{2}(r)=2-r^{2},\qquad 0\le r\le1. \]</p>
+
+  <p>Then $\rho^{2}=r^{2}(2-r^{2})=1-(1-r^{2})^{2}$. With $z=1-r^{2}$, this is exactly</p>
+
+  <p class="math-display">\[ \rho^{2}+z^{2}=1. \]</p>
+
+  <p>The equivalent surface is a unit sphere. Every parallel ray focuses at the opposite pole; every geodesic is a great circle. What looks like a statement about a carefully graded refractive index is, after the change of variables, a statement about the equator of a sphere.</p>
+
+  <figure>
+    <img src="/assets/figures/fig-surface-light.svg" alt="A sphere drawn as a wireframe, with several great circles highlighted in orange." width="900" height="680">
+    <figcaption><b>Fig. 2</b> — The Luneburg lens as a unit sphere. The orange great circles are geodesics; under the equivalence they are rays of the lens. The view is a wireframe, so the back of the sphere is visible too.</figcaption>
+  </figure>
+
+  <h2>What the Morse family adds</h2>
+
+  <p>The Luneburg lens is one point in a family. The Morse-type profile</p>
+
+  <p class="math-display">\[ n^{2}(r)=2r^{-2+1/B}-r^{-2+2/B},\qquad 0&lt;r\le1, \]</p>
+
+  <p>reduces to Luneburg at $B=\tfrac12$ and to Eaton at $B=1$. Intermediate values interpolate between a focusing lens and a retroreflector. In my BSc thesis I showed that the conformal Morse lens is the $(A=B,\,C=1)$ slice of Cornbleet's general family, with the parameter correspondence $a=-1/B$, and constructed the equivalent surfaces for the intermediate profiles.</p>
+
+  <p>The closure criterion matters most at the Eaton end. There $n\sim r^{-1/2}$ as $r\to0$, so the optical length to the origin diverges, the reconstructed surface opens, and the lens cannot close.<sup class="fn-ref">2</sup> That is a geometric obstruction, not a problem with the machining. The Morse family is interesting precisely because it lets us watch a closed lens turn into an open one.</p>
+
+  <aside class="sidenote"><b>2</b> The Eaton index behaves as $n\sim r^{-1/2}$ near the origin. The surface height integral diverges there; the profile opens into a vertical tangent instead of closing.</aside>
+
+  <h2>What the equivalence does not do</h2>
+
+  <p>It does not solve the wave problem. The metric equivalence is an identity between ray equations; it says nothing about polarisation, Fresnel reflection, or the diffraction limit of the resulting aperture. A surface that reproduces the rays of a lens can still scatter differently at the rim.</p>
+
+  <p>It also does not make the lens easy to build. A sphere is forgiving; a Morse surface is not. The interesting experimental question is not “does a surface exist?” but “how much figure error can it tolerate before the caustic stops being useful?”<sup class="fn-ref">3</sup></p>
+
+  <aside class="sidenote"><b>3</b> This is the question I would most like to answer numerically next: a sensitivity map from surface error to caustic blur, for the Luneburg and intermediate Morse profiles.</aside>
+
+  <h2>Why I keep returning to it</h2>
+
+  <p>The equivalence is a good antidote to the habit of thinking of a lens as an object. A lens is a relationship between a metric and a family of curves. Sometimes that relationship is realised by glass; sometimes by a metasurface; sometimes by a surface of revolution that exists only in a ray tracer. The mathematics does not care which.</p>
+
+  <p>It is also a useful reminder that “transformation optics” and “geodesic lenses” are the same idea seen from two directions: one starts from a coordinate change and asks what material realises it; the other starts from a surface and asks what rays it produces. The thesis lives in the second direction. The next project may need both.</p>
+
+  <p>The full derivation, including the parameter correspondence and the ray-tracing checks, is in <a href="/papers/morse-lens/">the thesis</a>.</p>
+
+  <h2>References</h2>
+  <ol class="reading-list">
+    <li>R. K. Luneburg, <em>Mathematical Theory of Optics</em>. Brown University Press, 1944.</li>
+    <li>M. Šarbort and T. Tyc, “Spherical media and geodesic lenses in geometrical optics,” <em>J. Opt.</em> <strong>14</strong>, 075103 (2012). <a href="https://doi.org/10.1088/2040-8978/14/7/075103">doi</a></li>
+    <li>U. Leonhardt, “Optical conformal mapping,” <em>Science</em> <strong>312</strong>, 1777–1780 (2006). <a href="https://doi.org/10.1126/science.1126493">doi</a></li>
+    <li>H. Chen, “The Morse lens,” arXiv:2002.03884 (2020). <a href="https://arxiv.org/abs/2002.03884">arXiv</a></li>
+    <li>S. Cornbleet, <em>Microwave and Geometrical Optics</em>. Academic Press, 1994.</li>
+  </ol>
+</article>
+
+<div class="note-end">
+  <span>Note 001 · Working note, not a peer-reviewed paper</span>
+  <span>Corrections: <a href="mailto:helloworld.3a@gmail.com">email</a></span>
+</div>
+
+<nav class="note-nav" aria-label="Notes">
+  <a href="/notes/">
+    <span><svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 8H3M7 3.5 2.5 8 7 12.5"/></svg> All notes</span>
+    <strong>Field notes</strong>
+  </a>
+  <a href="/notes/tracing-the-morse-lens/">
+    <span>Next note <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10.5M9 3.5 13.5 8 9 12.5"/></svg></span>
+    <strong>Tracing a ray through the Morse lens</strong>
+  </a>
+</nav>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__cta">
+      <div>
+        <p class="kicker kicker--light">Contact</p>
+        <h2>Let's talk about <em>light.</em></h2>
+        <a class="footer__email" href="mailto:helloworld.3a@gmail.com">helloworld.3a@gmail.com <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6"/></svg></a>
+      </div>
+      <a class="footer__toplink" href="#">Back to top <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13.5V2.5M3.5 7 8 2.5 12.5 7"/></svg></a>
+    </div>
+    <div class="footer__grid">
+      <div class="footer__col">
+        <h3>Explore</h3>
+        <a href="/research/">Research</a>
+        <a href="/notes/">Field notes</a>
+        <a href="/publications/">Publications</a>
+        <a href="/cv/">Curriculum vitae</a>
+        <a href="/about/">About</a>
+      </div>
+      <div class="footer__col">
+        <h3>Elsewhere</h3>
+        <a href="https://github.com/hello-zxs">GitHub <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6"/></svg></a>
+        <a href="mailto:helloworld.3a@gmail.com">Email</a>
+        <a href="/feed.xml">RSS</a>
+        <a href="/zh/" lang="zh-Hans">中文</a>
+      </div>
+      <div class="footer__col">
+        <h3>Colophon</h3>
+        <p>Designed and built by hand. Set in Newsreader and IBM Plex. Figures computed in the browser. No analytics, no trackers.</p>
+      </div>
+      <div class="footer__col">
+        <h3>Location</h3>
+        <p>London, Ontario<br>42.9849° N, 81.2453° W</p>
+        <p class="mono"><span data-clock>--:--</span> local time</p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Zheng Xiangsheng</span>
+      <span>zhengxs.com <span class="dotsep">/</span> Physics, geometry, light</span>
+      <span>Last updated 02 Nov 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script defer src="/assets/js/site.js"></script>
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/auto-render.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One photon at a time — Zheng Xiangsheng</title>
+<meta name="description" content="Interference does not require two photons to meet. A teaching-lab note on double slits, which-path information and fringe visibility.">
+<meta name="author" content="Zheng Xiangsheng">
+<link rel="canonical" href="https://zhengxs.com/notes/one-photon-at-a-time/">
+<meta name="theme-color" content="#08090B">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Zheng Xiangsheng">
+<meta property="og:title" content="One photon at a time — Zheng Xiangsheng">
+<meta property="og:description" content="Interference does not require two photons to meet. A teaching-lab note on double slits, which-path information and fringe visibility.">
+<meta property="og:url" content="https://zhengxs.com/notes/one-photon-at-a-time/">
+<meta property="og:image" content="https://zhengxs.com/assets/images/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_CA">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="One photon at a time — Zheng Xiangsheng">
+<meta name="twitter:description" content="Interference does not require two photons to meet. A teaching-lab note on double slits, which-path information and fringe visibility.">
+<meta name="twitter:image" content="https://zhengxs.com/assets/images/og.png">
+
+<link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="alternate" type="application/rss+xml" title="Field notes — Zheng Xiangsheng" href="/feed.xml">
+<link rel="me" href="https://github.com/hello-zxs">
+
+<link rel="preload" href="/assets/fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/plex-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script>
+  document.documentElement.classList.add('js');
+  window.addEventListener('error', function () {
+    document.documentElement.classList.remove('js');
+  });
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "One photon at a time",
+  "datePublished": "2026-10-12",
+  "author": {
+    "@type": "Person",
+    "name": "Zheng Xiangsheng"
+  },
+  "url": "https://zhengxs.com/notes/one-photon-at-a-time/"
+}
+</script>
+</head>
+
+<body class="page-paper">
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" data-nav>
+  <div class="nav__inner">
+    <a class="brand" href="/" aria-label="zhengxs — home">
+      <svg class="brand__mark" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <circle cx="10" cy="10" r="6.6" stroke="currentColor" stroke-width="1"/>
+        <circle cx="10" cy="10" r="1.8" fill="#FF6A3D"/>
+        <path d="M10 .6v2.2M10 17.2v2.2M.6 10h2.2M17.2 10h2.2" stroke="currentColor" stroke-width="1"/>
+      </svg>
+      <span>zhengxs</span><span class="brand__dot" aria-hidden="true"></span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="/research/">Research</a><a href="/notes/" class="is-active" aria-current="page">Notes</a><a href="/publications/">Publications</a><a href="/cv/">CV</a><a href="/about/">About</a>
+    </nav>
+    <div class="nav__meta">
+      <span class="nav__clock" data-clock>LONDON <b>--:--</b></span>
+      <a class="nav__mail" href="mailto:helloworld.3a@gmail.com">Email</a>
+      <button class="nav__menu" type="button" data-menu-open aria-expanded="false" aria-controls="site-menu">
+        <span class="nav__menu-lines" aria-hidden="true"><i></i><i></i></span>
+        <span class="open-label">Menu</span><span class="close-label">Close</span>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="menu" id="site-menu" aria-hidden="true">
+  <nav class="menu__nav" aria-label="Menu">
+    <a href="/"><span>Home</span><em aria-hidden="true">01</em></a><a href="/research/"><span>Research</span><em aria-hidden="true">02</em></a><a href="/notes/" class="is-active"><span>Notes</span><em aria-hidden="true">03</em></a><a href="/publications/"><span>Publications</span><em aria-hidden="true">04</em></a><a href="/cv/"><span>CV</span><em aria-hidden="true">05</em></a><a href="/about/"><span>About</span><em aria-hidden="true">06</em></a><a href="/zh/"><span>中文</span><em aria-hidden="true">07</em></a>
+  </nav>
+  <div class="menu__foot">
+    <div>Physics MSc · Western University<br>London, Ontario, Canada</div>
+    <div><a href="mailto:helloworld.3a@gmail.com">helloworld.3a@gmail.com</a><br><a href="https://github.com/hello-zxs">github.com/hello-zxs</a></div>
+  </div>
+</div>
+
+<main id="main">
+<div class="read-progress" data-progress></div>
+
+<header class="note-head">
+  <div class="wrap wrap--narrow">
+    <a class="note-head__back" href="/notes/"><svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 8H3M7 3.5 2.5 8 7 12.5"/></svg> Field notes</a>
+    <p class="kicker"><span class="kicker__no">Note 003</span> Quantum optics</p>
+    <h1>One photon at a time</h1>
+    <p class="note-head__dek">Interference does not require two photons to meet. It requires that no one knows which path each one took.</p>
+    <div class="note-meta">
+      <span class="author">Zheng Xiangsheng</span>
+      <span>12 Oct 2026</span>
+      <span>8 min read</span>
+      <span>Teaching-lab note</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap wrap--narrow">
+  <figure class="note-figure">
+    <div class="figure-scroll">
+      <img src="/assets/figures/fig-setup-light.svg" alt="A schematic of a double-slit experiment: a coherent source, a barrier with two slits, expanding wavefronts, and a detector screen." width="1180" height="420">
+    </div>
+    <figcaption><b>Fig. 1</b> — The apparatus, reduced to its geometry: source, two slits, screen. At low enough intensity the screen records single detections, one at a time.</figcaption>
+  </figure>
+</div>
+
+<article class="note-body prose">
+  <p>The double slit is usually introduced as a wave experiment. Run it with a source weak enough that only one photon is in the apparatus at a time, and the same pattern appears — dot by dot. No photon interferes with another photon. Each detection is a single event, and the pattern is what remains after many events.<sup class="fn-ref">1</sup></p>
+
+  <aside class="sidenote"><b>1</b> The source is attenuated until the probability of two photons in the apparatus is negligible. The interference is between amplitudes for one photon, not between photons.</aside>
+
+  <h2>The experiment</h2>
+
+  <p>A source illuminates a barrier with two narrow slits, separated by $d$, and a screen sits a distance $L$ away. With a bright source the screen shows fringes immediately. With a single-photon source and a detector that records individual arrivals, the fringes appear only after the detections accumulate. The apparatus is the same; the intensity is different.</p>
+
+  <p>Each detection has a position, never a trajectory. If the photon is detected at a particular $x$, no measurement in the apparatus says which slit it passed through. That absence of information is not a technical limitation; it is the condition for the pattern.</p>
+
+  <h2>The pattern</h2>
+
+  <p>The amplitude at the screen is the sum of the amplitudes from the two slits, and the probability is the square:</p>
+
+  <p class="math-display">\[ I(x)\propto\left|\psi_{1}(x)+\psi_{2}(x)\right|^{2}. \]</p>
+
+  <p>For slit separation $d$ and screen distance $L$, the fringe spacing is</p>
+
+  <p class="math-display">\[ \Delta x=\frac{\lambda L}{d}. \]</p>
+
+  <p>The envelope is set by the width of each slit. For $\lambda=633$ nm, $d=0.12$ mm and $L=1.2$ m, the spacing is about $6.3$ mm — large enough to see on a screen, small enough that alignment matters.</p>
+
+  <figure>
+    <img src="/assets/figures/fig-fringes-light.svg" alt="A double-slit interference pattern built from many single-photon detections, with the theoretical intensity curve overlaid." width="900" height="680">
+    <figcaption><b>Fig. 2</b> — The pattern built from single detections. The orange curve is the intensity law; the dots are individual events. The visibility is computed from the envelope, not from the raw counts.</figcaption>
+  </figure>
+
+  <h2>Which path</h2>
+
+  <p>Now make the paths distinguishable. A polariser in one arm, a path marker, or a detector that records which slit the photon used will do. The interference term disappears, and the pattern becomes the sum of two single-slit envelopes:</p>
+
+  <p class="math-display">\[ I(x)\propto\left|\psi_{1}(x)\right|^{2}+\left|\psi_{2}(x)\right|^{2}. \]</p>
+
+  <p>The trade is quantitative. Define the fringe visibility $V$ and the path distinguishability $D$. For a two-path experiment,</p>
+
+  <p class="math-display">\[ V=\frac{I_{\max}-I_{\min}}{I_{\max}+I_{\min}}, \]</p>
+
+  <p class="math-display">\[ V^{2}+D^{2}\le1. \]</p>
+
+  <p>Perfect path information means no fringes; perfect fringes mean no path information. The inequality is complementarity, stripped of philosophy.</p>
+
+  <p>The quantum eraser is the subtle version. If the path information is erased before the photon is detected — for example, by a coincidence measurement on an entangled idler — the fringes can reappear in the coincidence counts. Nothing travels backwards in time, and no signal is sent. The erasure is a selection of sub-ensembles, and the price is the coincidence count.</p>
+
+  <h2>What the lab measures</h2>
+
+  <p>The conceptual experiment is clean; the apparatus is not. The source must be attenuated until the probability of two photons in the apparatus is small, but not so weak that the count rate becomes impractical. The slits must be aligned to a few microns. The detector has dark counts, and the source has a finite coherence length. A fringe pattern with low visibility is not a failed demonstration of quantum mechanics; it is a measurement of these imperfections.</p>
+
+  <p>Visibility is a fit parameter, not a count of bright and dark dots. Dark counts add a flat background and pull the minima up; a finite coherence length reduces the envelope. Reporting $V=0.98$ without saying how it was extracted is a habit worth breaking.<sup class="fn-ref">2</sup></p>
+
+  <aside class="sidenote"><b>2</b> The numbers in this note come from a simulation with the stated parameters. They are not measurements from a particular apparatus; the teaching-lab version would need its own calibration.</aside>
+
+  <h2>The simulation</h2>
+
+  <p>The <a href="/research/#quantum-optics">interactive figure on the research page</a> samples detections from the same intensity law. With which-path information off, the dots build fringes. With it on, the fringes disappear and the two envelopes remain. The point of the simulation is not to replace the experiment; it is to make the distinction between “the pattern” and “a single detection” visible at a glance.</p>
+
+  <p>The deeper question is the one I keep circling: a detector is a physical object, not an abstract “which-path” label. What happens to the field when the detector is switched on, and how does the back-action appear in the coincidence counts? That is a real experiment, not a thought experiment.</p>
+
+  <h2>References</h2>
+  <ol class="reading-list">
+    <li>R. P. Feynman, R. B. Leighton, and M. Sands, <em>The Feynman Lectures on Physics</em>, Vol. III, Ch. 1. <a href="https://www.feynmanlectures.caltech.edu/III_01.html">online</a></li>
+    <li>M. O. Scully and K. Drühl, “Quantum eraser: A proposed photon correlation experiment concerning observation and ‘delayed choice’ in quantum mechanics,” <em>Phys. Rev. A</em> <strong>25</strong>, 2208 (1982). <a href="https://doi.org/10.1103/PhysRevA.25.2208">doi</a></li>
+    <li>A. Aspect, P. Grangier, and G. Roger, “Experimental evidence for a photon anticorrelation effect on a beam splitter: A new light on single-photon interferences,” <em>Phys. Rev. Lett.</em> <strong>57</strong>, 293 (1986). <a href="https://doi.org/10.1103/PhysRevLett.57.293">doi</a></li>
+    <li>M. Born and E. Wolf, <em>Principles of Optics</em>, 7th ed. Cambridge University Press, 1999.</li>
+  </ol>
+</article>
+
+<div class="note-end">
+  <span>Note 003 · Teaching-lab note, not a claim of new data</span>
+  <span>Corrections: <a href="mailto:helloworld.3a@gmail.com">email</a></span>
+</div>
+
+<nav class="note-nav" aria-label="Notes">
+  <a href="/notes/tracing-the-morse-lens/">
+    <span><svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 8H3M7 3.5 2.5 8 7 12.5"/></svg> Previous note</span>
+    <strong>Tracing a ray through the Morse lens</strong>
+  </a>
+  <a href="/notes/">
+    <span>All notes <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10.5M9 3.5 13.5 8 9 12.5"/></svg></span>
+    <strong>Field notes</strong>
+  </a>
+</nav>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__cta">
+      <div>
+        <p class="kicker kicker--light">Contact</p>
+        <h2>Let's talk about <em>light.</em></h2>
+        <a class="footer__email" href="mailto:helloworld.3a@gmail.com">helloworld.3a@gmail.com <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6"/></svg></a>
+      </div>
+      <a class="footer__toplink" href="#">Back to top <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13.5V2.5M3.5 7 8 2.5 12.5 7"/></svg></a>
+    </div>
+    <div class="footer__grid">
+      <div class="footer__col">
+        <h3>Explore</h3>
+        <a href="/research/">Research</a>
+        <a href="/notes/">Field notes</a>
+        <a href="/publications/">Publications</a>
+        <a href="/cv/">Curriculum vitae</a>
+        <a href="/about/">About</a>
+      </div>
+      <div class="footer__col">
+        <h3>Elsewhere</h3>
+        <a href="https://github.com/hello-zxs">GitHub <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6"/></svg></a>
+        <a href="mailto:helloworld.3a@gmail.com">Email</a>
+        <a href="/feed.xml">RSS</a>
+        <a href="/zh/" lang="zh-Hans">中文</a>
+      </div>
+      <div class="footer__col">
+        <h3>Colophon</h3>
+        <p>Designed and built by hand. Set in Newsreader and IBM Plex. Figures computed in the browser. No analytics, no trackers.</p>
+      </div>
+      <div class="footer__col">
+        <h3>Location</h3>
+        <p>London, Ontario<br>42.9849° N, 81.2453° W</p>
+        <p class="mono"><span data-clock>--:--</span> local time</p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Zheng Xiangsheng</span>
+      <span>zhengxs.com <span class="dotsep">/</span> Physics, geometry, light</span>
+      <span>Last updated 02 Nov 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script defer src="/assets/js/site.js"></script>
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/auto-render.min.js"></script>
+</body>
+</html>

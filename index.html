@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zheng Xiangsheng — Light follows geometry</title>
+<meta name="description" content="Physics MSc at Western University working on transformation optics, geodesic lenses and quantum optics. Research, papers and field notes.">
+<meta name="author" content="Zheng Xiangsheng">
+<link rel="canonical" href="https://zhengxs.com/">
+<meta name="theme-color" content="#08090B">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Zheng Xiangsheng">
+<meta property="og:title" content="Zheng Xiangsheng — Light follows geometry">
+<meta property="og:description" content="Physics MSc at Western University working on transformation optics, geodesic lenses and quantum optics. Research, papers and field notes.">
+<meta property="og:url" content="https://zhengxs.com/">
+<meta property="og:image" content="https://zhengxs.com/assets/images/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_CA">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Zheng Xiangsheng — Light follows geometry">
+<meta name="twitter:description" content="Physics MSc at Western University working on transformation optics, geodesic lenses and quantum optics. Research, papers and field notes.">
+<meta name="twitter:image" content="https://zhengxs.com/assets/images/og.png">
+
+<link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="alternate" type="application/rss+xml" title="Field notes — Zheng Xiangsheng" href="/feed.xml">
+<link rel="me" href="https://github.com/hello-zxs">
+
+<link rel="preload" href="/assets/fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/plex-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css">
+
+<script>
+  document.documentElement.classList.add('js');
+  window.addEventListener('error', function () {
+    document.documentElement.classList.remove('js');
+  });
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Zheng Xiangsheng",
+  "url": "https://zhengxs.com/",
+  "jobTitle": "Physics MSc student",
+  "affiliation": {
+    "@type": "Organization",
+    "name": "Western University"
+  },
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "Xiamen University Malaysia"
+  },
+  "knowsAbout": [
+    "Transformation optics",
+    "Geodesic lenses",
+    "Gradient-index optics",
+    "Quantum optics"
+  ],
+  "email": "mailto:helloworld.3a@gmail.com",
+  "sameAs": [
+    "https://github.com/hello-zxs"
+  ]
+}
+</script>
+</head>
+
+<body class="page-home">
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" data-nav>
+  <div class="nav__inner">
+    <a class="brand" href="/" aria-label="zhengxs — home">
+      <svg class="brand__mark" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <circle cx="10" cy="10" r="6.6" stroke="currentColor" stroke-width="1"/>
+        <circle cx="10" cy="10" r="1.8" fill="#FF6A3D"/>
+        <path d="M10 .6v2.2M10 17.2v2.2M.6 10h2.2M17.2 10h2.2" stroke="currentColor" stroke-width="1"/>
+      </svg>
+      <span>zhengxs</span><span class="brand__dot" aria-hidden="true"></span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="/research/">Research</a><a href="/notes/">Notes</a><a href="/publications/">Publications</a><a href="/cv/">CV</a><a href="/about/">About</a>
+    </nav>
+    <div class="nav__meta">
+      <span class="nav__clock" data-clock>LONDON <b>--:--</b></span>
+      <a class="nav__mail" href="mailto:helloworld.3a@gmail.com">Email</a>
+      <button class="nav__menu" type="button" data-menu-open aria-expanded="false" aria-controls="site-menu">
+        <span class="nav__menu-lines" aria-hidden="true"><i></i><i></i></span>
+        <span class="open-label">Menu</span><span class="close-label">Close</span>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="menu" id="site-menu" aria-hidden="true">
+  <nav class="menu__nav" aria-label="Menu">
+    <a href="/"><span>Home</span><em aria-hidden="true">01</em></a><a href="/research/"><span>Research</span><em aria-hidden="true">02</em></a><a href="/notes/"><span>Notes</span><em aria-hidden="true">03</em></a><a href="/publications/"><span>Publications</span><em aria-hidden="true">04</em></a><a href="/cv/"><span>CV</span><em aria-hidden="true">05</em></a><a href="/about/"><span>About</span><em aria-hidden="true">06</em></a><a href="/zh/"><span>中文</span><em aria-hidden="true">07</em></a>
+  </nav>
+  <div class="menu__foot">
+    <div>Physics MSc · Western University<br>London, Ontario, Canada</div>
+    <div><a href="mailto:helloworld.3a@gmail.com">helloworld.3a@gmail.com</a><br><a href="https://github.com/hello-zxs">github.com/hello-zxs</a></div>
+  </div>
+</div>
+
+<main id="main">
+<section class="hero" data-hero>
+  <canvas class="hero__canvas" data-lens aria-hidden="true"></canvas>
+  <div class="hero__veil"></div>
+  <p class="sr-only">Figure: parallel rays of light enter a Luneburg lens and converge at a single point on the opposite rim of the lens.</p>
+
+  <div class="hero__instrument" aria-hidden="true">
+    <span><b>Fig. 01</b> &mdash; Luneburg lens</span>
+    <span>n&sup2; = 2 &minus; (r/R)&sup2;</span>
+    <span>f = R &nbsp;&middot;&nbsp; &lambda; = 633 nm</span>
+    <span data-lens-readout>&theta; = 0.0&deg;</span>
+  </div>
+
+  <div class="hero__inner">
+    <div class="hero__copy">
+      <p class="eyebrow anim" style="--d:.08s">Zheng Xiangsheng &mdash; Physics MSc</p>
+      <h1 class="display anim" style="--d:.16s">Light follows<br><em>geometry</em><span class="display__dot" aria-hidden="true"></span></h1>
+      <p class="lead anim" style="--d:.28s">I study transformation optics, geodesic lenses and quantum optics &mdash; how a change of geometry becomes a change of light.</p>
+      <div class="hero__actions anim" style="--d:.38s">
+        <a class="btn btn--light" href="/research/">Explore the research <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10.5M9 3.5 13.5 8 9 12.5"/></svg></a>
+        <a class="link link--light" href="/papers/morse-lens/">Read the thesis <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6"/></svg></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__hint" aria-hidden="true"><i></i>Move to tilt the beam</div>
+
+  <div class="hero__foot">
+    <div class="hero__datum">
+      <span>Currently</span>
+      <strong>MSc Physics &middot; Western University</strong>
+    </div>
+    <div class="hero__datum">
+      <span>Based in</span>
+      <strong>London, Ontario, Canada</strong>
+    </div>
+    <div class="hero__datum">
+      <span>Focus</span>
+      <strong>Transformation optics &amp; quantum optics</strong>
+    </div>
+    <div class="hero__datum">
+      <span>Status</span>
+      <strong><i class="dot"></i>Open to collaboration</strong>
+    </div>
+  </div>
+</section>
+
+<section class="statement">
+  <div class="wrap">
+    <div class="statement__grid">
+      <div>
+        <p class="kicker reveal">The through-line</p>
+        <p class="statement__text reveal" style="--d:.08s">A lens is a piece of <em>geometry</em>. A coordinate transformation is a <em>material</em>. Change the space, and light obeys.</p>
+      </div>
+      <div class="statement__side reveal" style="--d:.16s">
+        <p>I am a physics MSc student at Western University, working where transformation optics meets the bench: geodesic lenses, conformal mapping, and single-photon interference.</p>
+        <p>My BSc thesis at Xiamen University Malaysia asked a narrow question &mdash; what surface is equivalent to a Morse lens? &mdash; and answered it with a metric, a quadrature, and a ray tracer.</p>
+        <a class="link link--dark" href="/about/">More about me <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10.5M9 3.5 13.5 8 9 12.5"/></svg></a>
+        <div class="statement__meta">
+          <span><i></i>XMUM &rarr; Western</span>
+          <span><i></i>London, Ontario</span>
+          <span><i></i>2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="research">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <p class="kicker"><span class="kicker__no">02</span> Research</p>
+        <h2 class="h2">Three ways to bend <em>a ray.</em></h2>
+      </div>
+      <p class="section-head__aside">The same question at three scales: how does geometry decide the path of light? <a class="text-link" href="/research/">Walk through the lab <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10.5M9 3.5 13.5 8 9 12.5"/></svg></a></p>
+    </div>
+
+    <div class="threads">
+      <a class="thread reveal" href="/research/#transformation-optics">
+        <div class="thread__fig">
+          <img src="/assets/figures/fig-cloak-dark.svg" alt="A square grid compressed around a hidden circular region, visualising a transformation-optics cloak." width="900" height="680">
+        </div>
+        <div class="thread__body">
+          <div class="thread__top"><span class="thread__no">01</span><span class="thread__tag">Theory</span></div>
+          <h3>Transformation optics</h3>
+          <p>Coordinate transformations rewritten as material parameters &mdash; from Fermat's principle to the cloak.</p>
+          <span class="thread__more">Enter the field <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10.5M9 3.5 13.5 8 9 12.5"/></svg></span>
+        </div>
+      </a>
+
+      <a class="thread reveal" href="/research/#geodesic-lenses" style="--d:.08s">
+        <div class="thread__fig">
+          <img src="/assets/figures/fig-lens-dark.svg" alt="Parallel rays traced through a Luneburg lens, converging at a point on its rim." width="900" height="680">
+        </div>
+        <div class="thread__body">
+          <div class="thread__top"><span class="thread__no">02</span><span class="thread__tag">Geometry</span></div>
+          <h3>Geodesic lenses</h3>
+          <p>Morse, Luneburg and Eaton lenses as equivalent surfaces, traced ray by ray &mdash; and turned into geometry.</p>
+          <span class="thread__more">Enter the field <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10.5M9 3.5 13.5 8 9 12.5"/></svg></span>
+        </div>
+      </a>
+
+      <a class="thread reveal" href="/research/#quantum-optics" style="--d:.16s">
+        <div class="thread__fig">
+          <img src="/assets/figures/fig-fringes-dark.svg" alt="Single-photon detections accumulating into a double-slit interference pattern." width="900" height="680">
+        </div>
+        <div class="thread__body">
+          <div class="thread__top"><span class="thread__no">03</span><span class="thread__tag">Experiment</span></div>
+          <h3>Quantum optics</h3>
+          <p>Single-photon interference and wave&ndash;particle duality, approached one detection at a time.</p>
+          <span class="thread__more">Enter the field <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10.5M9 3.5 13.5 8 9 12.5"/></svg></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="thesis-band">
+  <div class="wrap">
+    <div class="thesis-band__grid">
+      <div class="reveal">
+        <p class="kicker kicker--light"><span class="kicker__no">03</span> Selected work</p>
+        <h2>The Morse lens, <em>traced to its surface.</em></h2>
+        <p class="thesis-band__dek">A BSc thesis that proves the conformal Morse lens is a slice of Cornbleet's family, constructs its equivalent geodesic surface, and checks the geometry ray by ray.</p>
+        <div class="thesis-band__meta">
+          <span>BSc (Hons) Thesis</span>
+          <span>Xiamen University Malaysia</span>
+          <span>2026</span>
+        </div>
+        <div class="thesis-band__actions">
+          <a class="btn btn--light" href="/papers/morse-lens/">Read the paper <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10.5M9 3.5 13.5 8 9 12.5"/></svg></a>
+          <a class="btn btn--ghost" href="/assets/pdf/morse-lens.pdf">Download PDF</a>
+        </div>
+      </div>
+      <figure class="thesis-band__fig reveal" style="--d:.12s">
+        <img src="/assets/figures/fig-surface-dark.svg" alt="A wireframe sphere with geodesics drawn across its surface, representing the equivalent geodesic surface of a Luneburg lens." width="900" height="680">
+        <figcaption>Fig. 02 &mdash; The Luneburg lens is exactly a sphere. Geodesics on the surface are the rays in the medium.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section notes-section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <p class="kicker"><span class="kicker__no">04</span> Field notes</p>
+        <h2 class="h2">Working notes, <em>kept honest.</em></h2>
+      </div>
+      <p class="section-head__aside">Short, reproducible notes on optics and numerical geometry. Assumptions stated, code included, figures computed. <a class="text-link" href="/notes/">All notes <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10.5M9 3.5 13.5 8 9 12.5"/></svg></a></p>
+    </div>
+
+    <div class="notes-list">
+      <a class="note-row reveal" href="/notes/why-a-lens-is-a-surface/">
+        <span class="note-row__index">001</span>
+        <span class="note-row__date">02 Nov 2026</span>
+        <div class="note-row__main">
+          <h3>Why a lens is a surface</h3>
+          <p>The metric equivalence that turns a gradient-index problem into curved geometry &mdash; and why the Luneburg lens is exactly a sphere.</p>
+        </div>
+        <span class="note-row__meta"><span>Transformation optics</span><span>9 min read</span><svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10.5M9 3.5 13.5 8 9 12.5"/></svg></span>
+      </a>
+      <a class="note-row reveal" href="/notes/tracing-the-morse-lens/" style="--d:.06s">
+        <span class="note-row__index">002</span>
+        <span class="note-row__date">24 Oct 2026</span>
+        <div class="note-row__main">
+          <h3>Tracing a ray through the Morse lens</h3>
+          <p>Four equations, a step size, and a convergence check: what it takes to trust a numerically traced ray.</p>
+        </div>
+        <span class="note-row__meta"><span>Numerics</span><span>11 min read</span><svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10.5M9 3.5 13.5 8 9 12.5"/></svg></span>
+      </a>
+      <a class="note-row reveal" href="/notes/one-photon-at-a-time/" style="--d:.12s">
+        <span class="note-row__index">003</span>
+        <span class="note-row__date">12 Oct 2026</span>
+        <div class="note-row__main">
+          <h3>One photon at a time</h3>
+          <p>Interference without a second photon, and what a which-path detector does to the fringes.</p>
+        </div>
+        <span class="note-row__meta"><span>Quantum optics</span><span>8 min read</span><svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10.5M9 3.5 13.5 8 9 12.5"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="now">
+  <div class="wrap">
+    <div class="now__head reveal">
+      <div>
+        <p class="kicker"><span class="kicker__no">05</span> Now</p>
+        <h2 class="h2">At the moment.</h2>
+      </div>
+      <a class="link link--dark" href="/cv/">Full CV <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10.5M9 3.5 13.5 8 9 12.5"/></svg></a>
+    </div>
+    <div class="now__grid reveal">
+      <div class="now__cell">
+        <span>Position</span>
+        <strong>MSc Physics, Western University</strong>
+        <small>Started autumn 2026 &middot; London, Ontario</small>
+      </div>
+      <div class="now__cell">
+        <span>Working on</span>
+        <strong>Reproducible ray tracing</strong>
+        <small>Turning the thesis pipeline into notebooks, and the notes into something you can rerun.</small>
+      </div>
+      <div class="now__cell">
+        <span>Tools</span>
+        <strong>Python &middot; NumPy &middot; Mathematica</strong>
+        <small>Numerics for the optics; symbolic checks for the algebra; COMSOL when fields matter.</small>
+      </div>
+      <div class="now__cell">
+        <span>Open to</span>
+        <strong>Collaboration &amp; corrections</strong>
+        <small>Especially geodesic lenses, conformal optics, and single-photon experiments.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__cta">
+      <div>
+        <p class="kicker kicker--light">Contact</p>
+        <h2>Let's talk about <em>light.</em></h2>
+        <a class="footer__email" href="mailto:helloworld.3a@gmail.com">helloworld.3a@gmail.com <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6"/></svg></a>
+      </div>
+      <a class="footer__toplink" href="#">Back to top <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13.5V2.5M3.5 7 8 2.5 12.5 7"/></svg></a>
+    </div>
+    <div class="footer__grid">
+      <div class="footer__col">
+        <h3>Explore</h3>
+        <a href="/research/">Research</a>
+        <a href="/notes/">Field notes</a>
+        <a href="/publications/">Publications</a>
+        <a href="/cv/">Curriculum vitae</a>
+        <a href="/about/">About</a>
+      </div>
+      <div class="footer__col">
+        <h3>Elsewhere</h3>
+        <a href="https://github.com/hello-zxs">GitHub <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6"/></svg></a>
+        <a href="mailto:helloworld.3a@gmail.com">Email</a>
+        <a href="/feed.xml">RSS</a>
+        <a href="/zh/" lang="zh-Hans">中文</a>
+      </div>
+      <div class="footer__col">
+        <h3>Colophon</h3>
+        <p>Designed and built by hand. Set in Newsreader and IBM Plex. Figures computed in the browser. No analytics, no trackers.</p>
+      </div>
+      <div class="footer__col">
+        <h3>Location</h3>
+        <p>London, Ontario<br>42.9849° N, 81.2453° W</p>
+        <p class="mono"><span data-clock>--:--</span> local time</p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Zheng Xiangsheng</span>
+      <span>zhengxs.com <span class="dotsep">/</span> Physics, geometry, light</span>
+      <span>Last updated 02 Nov 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script defer src="/assets/js/site.js"></script>
+<script defer src="/assets/js/labs.js"></script>
+</body>
+</html>

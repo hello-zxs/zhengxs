@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ray tracing and equivalent geodesic lenses for the Morse lens — Zheng Xiangsheng</title>
+<meta name="description" content="BSc thesis constructing the equivalent geodesic-lens representation of the Morse profile and validating it by ray tracing.">
+<meta name="author" content="Zheng Xiangsheng">
+<link rel="canonical" href="https://zhengxs.com/papers/morse-lens/">
+<meta name="theme-color" content="#08090B">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Zheng Xiangsheng">
+<meta property="og:title" content="Ray tracing and equivalent geodesic lenses for the Morse lens — Zheng Xiangsheng">
+<meta property="og:description" content="BSc thesis constructing the equivalent geodesic-lens representation of the Morse profile and validating it by ray tracing.">
+<meta property="og:url" content="https://zhengxs.com/papers/morse-lens/">
+<meta property="og:image" content="https://zhengxs.com/assets/images/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_CA">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ray tracing and equivalent geodesic lenses for the Morse lens — Zheng Xiangsheng">
+<meta name="twitter:description" content="BSc thesis constructing the equivalent geodesic-lens representation of the Morse profile and validating it by ray tracing.">
+<meta name="twitter:image" content="https://zhengxs.com/assets/images/og.png">
+
+<link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="alternate" type="application/rss+xml" title="Field notes — Zheng Xiangsheng" href="/feed.xml">
+<link rel="me" href="https://github.com/hello-zxs">
+
+<link rel="preload" href="/assets/fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/plex-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script>
+  document.documentElement.classList.add('js');
+  window.addEventListener('error', function () {
+    document.documentElement.classList.remove('js');
+  });
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "Ray tracing and equivalent geodesic lenses for the Morse lens",
+  "author": {
+    "@type": "Person",
+    "name": "Zheng Xiangsheng"
+  },
+  "datePublished": "2026",
+  "url": "https://zhengxs.com/papers/morse-lens/",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Xiamen University Malaysia"
+  }
+}
+</script>
+</head>
+
+<body class="page-paper">
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" data-nav>
+  <div class="nav__inner">
+    <a class="brand" href="/" aria-label="zhengxs — home">
+      <svg class="brand__mark" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <circle cx="10" cy="10" r="6.6" stroke="currentColor" stroke-width="1"/>
+        <circle cx="10" cy="10" r="1.8" fill="#FF6A3D"/>
+        <path d="M10 .6v2.2M10 17.2v2.2M.6 10h2.2M17.2 10h2.2" stroke="currentColor" stroke-width="1"/>
+      </svg>
+      <span>zhengxs</span><span class="brand__dot" aria-hidden="true"></span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="/research/">Research</a><a href="/notes/">Notes</a><a href="/publications/" class="is-active" aria-current="page">Publications</a><a href="/cv/">CV</a><a href="/about/">About</a>
+    </nav>
+    <div class="nav__meta">
+      <span class="nav__clock" data-clock>LONDON <b>--:--</b></span>
+      <a class="nav__mail" href="mailto:helloworld.3a@gmail.com">Email</a>
+      <button class="nav__menu" type="button" data-menu-open aria-expanded="false" aria-controls="site-menu">
+        <span class="nav__menu-lines" aria-hidden="true"><i></i><i></i></span>
+        <span class="open-label">Menu</span><span class="close-label">Close</span>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="menu" id="site-menu" aria-hidden="true">
+  <nav class="menu__nav" aria-label="Menu">
+    <a href="/"><span>Home</span><em aria-hidden="true">01</em></a><a href="/research/"><span>Research</span><em aria-hidden="true">02</em></a><a href="/notes/"><span>Notes</span><em aria-hidden="true">03</em></a><a href="/publications/" class="is-active"><span>Publications</span><em aria-hidden="true">04</em></a><a href="/cv/"><span>CV</span><em aria-hidden="true">05</em></a><a href="/about/"><span>About</span><em aria-hidden="true">06</em></a><a href="/zh/"><span>中文</span><em aria-hidden="true">07</em></a>
+  </nav>
+  <div class="menu__foot">
+    <div>Physics MSc · Western University<br>London, Ontario, Canada</div>
+    <div><a href="mailto:helloworld.3a@gmail.com">helloworld.3a@gmail.com</a><br><a href="https://github.com/hello-zxs">github.com/hello-zxs</a></div>
+  </div>
+</div>
+
+<main id="main">
+<div class="read-progress" data-progress></div>
+
+<header class="paper-head">
+  <div class="wrap">
+    <div class="paper-head__top">
+      <span>BSc (Hons) Thesis &middot; 2026</span>
+      <span>Xiamen University Malaysia</span>
+      <span>Physics</span>
+    </div>
+    <h1>Ray tracing and equivalent geodesic lenses for the Morse lens</h1>
+    <p class="paper-authors">Zheng Xiangsheng</p>
+    <p class="paper-affil">Physics Programme, Xiamen University Malaysia, Sepang, Malaysia · helloworld.3a@gmail.com</p>
+    <div class="paper-actions">
+      <a class="btn btn--dark" href="/assets/pdf/morse-lens.pdf">Download PDF <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10.5M9 3.5 13.5 8 9 12.5"/></svg></a>
+      <a class="btn btn--line" href="#cite">Cite this paper</a>
+      <a class="btn btn--line" href="/publications/">All publications</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="abstract" aria-label="Abstract">
+    <h2>Abstract</h2>
+    <p>We construct the equivalent geodesic-lens representation of the Morse refractive-index profile, show that the conformal Morse lens is the $(A=B,\,C=1)$ subclass of Cornbleet's general family, and validate the construction by ray tracing.</p>
+    <p class="index-terms"><strong>Index Terms—</strong>Geodesic lenses; transformation optics; Morse potential; gradient-index optics; ray tracing.</p>
+  </section>
+
+  <div class="paper-layout">
+    <aside class="paper-toc" aria-label="Contents">
+      <h2>Contents</h2>
+      <a href="#i-introduction" data-toc-link>I. Introduction</a>
+      <a href="#ii-metric-equivalence" data-toc-link>II. Metric equivalence</a>
+      <a href="#iii-the-morse-profile-in-cornbleets-family" data-toc-link>III. The Morse profile</a>
+      <a href="#iv-surface-construction-and-closure" data-toc-link>IV. Surface construction</a>
+      <a href="#v-ray-tracing-validation" data-toc-link>V. Ray-tracing validation</a>
+      <a href="#vi-discussion" data-toc-link>VI. Discussion</a>
+      <a href="#vii-conclusion" data-toc-link>VII. Conclusion</a>
+      <a href="#references" data-toc-link>References</a>
+    </aside>
+
+    <article class="paper-body prose">
+      <h2 id="i-introduction">I. Introduction</h2>
+
+      <p>A gradient-index (GRIN) lens shapes a wavefront by making the refractive index a function of position. The classical examples — the Luneburg lens [1], [2], the Eaton lens, and the Maxwell fisheye — are spherically or cylindrically symmetric, and their ray paths can be obtained analytically. A different but equivalent route replaces the three-dimensional index distribution by a curved surface: if the surface metric is chosen correctly, rays in the medium and geodesics on the surface coincide. Lenses built this way are called geodesic lenses, and the equivalence is the basis of a body of work on microwave and geometrical optics [3], [4].</p>
+
+      <p>The Morse potential, familiar from molecular physics, was recently shown to generate a family of conformal lenses related to the Eaton and Luneburg solutions [5]. The Morse lens is attractive for two reasons. First, its refractive-index profile is a one-parameter deformation that contains the Luneburg and Eaton lenses as limiting cases. Second, being conformal, it requires an isotropic index rather than the anisotropic constitutive parameters of a general transformation-optics device [6], [7]. The material and experimental side of the wider programme is reviewed in [8] and [9].</p>
+
+      <p>What has been missing is a single, explicit account that (i) derives the surface construction from the metric-equivalence relations, (ii) locates the conformal Morse lens inside Cornbleet's general implicit family [3], and (iii) validates the construction numerically. This paper provides that account. The contributions are:</p>
+
+      <ol>
+        <li>a compact derivation of the metric equivalence, including the master identity that links the index profile $n(r)$ to the surface profile $z(\rho)$;</li>
+        <li>a proof that the conformal Morse lens is the $(A=B,\,C=1)$ subclass of Cornbleet's family, with the corrected parameter correspondence $a=-1/B$;</li>
+        <li>the surface construction for the Luneburg, Eaton, and intermediate Morse profiles, together with a closure criterion;</li>
+        <li>a ray-tracing comparison between the original GRIN media and the reconstructed surfaces.</li>
+      </ol>
+
+      <p>The paper is organized as follows. Section II derives the equivalence. Section III places the Morse profile in Cornbleet's family. Section IV constructs the surfaces and states the closure criterion. Section V reports the ray-tracing results. Section VI discusses limitations, and Section VII concludes.</p>
+
+      <h2 id="ii-metric-equivalence">II. Metric Equivalence</h2>
+
+      <h3>A. Fermat's principle</h3>
+
+      <p>In a medium with refractive index $n(\mathbf{r})$, Fermat's principle states that the optical path</p>
+
+      <p class="math-display">\[ S=\int n(\mathbf{r})\,ds \tag{1} \]</p>
+
+      <p>is stationary along a ray, where $ds$ is the Euclidean arc length. For a spherically symmetric profile $n=n(r)$, the ray problem has two conserved quantities: the optical angular momentum $L=n(r)\,r^{2}\dot{\varphi}$ and the ray invariant $n\cos\psi$, with $\psi$ the angle between the ray and the radial direction.</p>
+
+      <h3>B. Surface of revolution</h3>
+
+      <p>Consider a surface of revolution generated by $z=z(\rho)$, parameterized by $(\rho,\varphi)$. Its metric is</p>
+
+      <p class="math-display">\[ ds_{\Sigma}^{2}=\left[1+\left(\frac{dz}{d\rho}\right)^{2}\right]d\rho^{2}+\rho^{2}\,d\varphi^{2}. \tag{2} \]</p>
+
+      <p>We look for a mapping $\rho=\rho(r)$ such that the geodesics of (2) coincide with the rays of the GRIN medium. Equating the optical metric $n^{2}(r)\left(dr^{2}+r^{2}d\varphi^{2}\right)$ to (2) gives the three metric-equivalence relations</p>
+
+      <p class="math-display">\[ \begin{aligned} \rho&=n(r)\,r,\qquad ds=n(r)\,dr,\\ dz^{2}&=ds^{2}-d\rho^{2}. \end{aligned} \tag{3} \]</p>
+
+      <p>The first relation defines the projected radius; the second identifies the optical arc length with the arc length on the surface; the third fixes the height profile.</p>
+
+      <h3>C. The master identity</h3>
+
+      <p>Differentiating $\rho=n r$ gives $d\rho/dr=n+r n'$, and therefore</p>
+
+      <p class="math-display">\[ s'(\rho)\,(n+r n')=n,\qquad s'(\rho)\equiv\frac{ds}{d\rho}, \tag{4} \]</p>
+
+      <p>which is the master identity of the construction. Once $s'(\rho)$ is known, the surface is obtained by quadrature:</p>
+
+      <p class="math-display">\[ z(\rho)=\int_{0}^{\rho}\sqrt{s'(\xi)^{2}-1}\;d\xi. \tag{5} \]</p>
+
+      <p>Equation (5) makes the geometry explicit: the existence of a real surface requires $s'(\rho)\ge1$, and a closed lens requires the integral to remain finite up to the rim and the tangent to become vertical there.</p>
+
+      <figure>
+        <div class="figure-scroll">
+          <picture>
+            <source media="(max-width: 700px)" srcset="/assets/figures/fig-equivalence-mobile.svg">
+            <img src="/assets/figures/fig-equivalence-light.svg" alt="A gradient-index disc with converging rays beside a surface of revolution with a geodesic.">
+          </picture>
+        </div>
+        <figcaption><strong>Fig. 1.</strong> The metric equivalence. A gradient-index medium and a surface of revolution with the same optical metric. Rays in the medium correspond to geodesics on the surface. The plot is schematic; the profiles used in Section V are computed from (5) and (6).</figcaption>
+      </figure>
+
+      <h2 id="iii-the-morse-profile-in-cornbleets-family">III. The Morse Profile in Cornbleet's Family</h2>
+
+      <h3>A. Morse profile</h3>
+
+      <p>The Morse-type profile considered here is</p>
+
+      <p class="math-display">\[ n^{2}(r)=2\,r^{-2+1/B}-r^{-2+2/B},\qquad 0&lt;r\le1, \tag{6} \]</p>
+
+      <p>with $B&gt;0$ a shape parameter. For $B=1/2$ and $B=1$ the expression reduces to the Luneburg and Eaton profiles, respectively; intermediate values interpolate between them.</p>
+
+      <h3>B. Parameter correspondence</h3>
+
+      <p>Cornbleet's implicit family is characterized by three parameters $(A,B,C)$, with $a$ a scale parameter of the underlying profile [3]. Matching (6) to the general family term by term gives</p>
+
+      <p class="math-display">\[ A=B,\qquad C=1,\qquad a=-\frac{1}{B}. \tag{7} \]</p>
+
+      <p>Equation (7) is the central structural result: the conformal Morse lens is not a new family but the $(A=B,\,C=1)$ slice of Cornbleet's family. The correspondence also explains the two limits. Substituting $B=1/2$ into (6),</p>
+
+      <p class="math-display">\[ n^{2}(r)=2-r^{2}, \tag{8a} \]</p>
+
+      <p>which is the Luneburg profile [1], [2]; substituting $B=1$ gives</p>
+
+      <p class="math-display">\[ n^{2}(r)=\frac{2}{r}-1, \tag{8b} \]</p>
+
+      <p>which is the Eaton profile. The Morse parameter therefore controls a continuous deformation between a focusing lens and a retroreflector.</p>
+
+      <h2 id="iv-surface-construction-and-closure">IV. Surface Construction and Closure</h2>
+
+      <h3>A. Integration</h3>
+
+      <p>For a given $B$, (6) provides $n(r)$ on $0&lt;r\le1$. The projected radius $\rho(r)=r n(r)$ is monotone on the interval of interest, so $r(\rho)$ can be inverted numerically. Equation (4) then gives $s'(\rho)$, and (5) is integrated with a cumulative trapezoidal rule on a fine grid.</p>
+
+      <h3>B. Closure criterion</h3>
+
+      <p>The surface closes if and only if $z(\rho)$ remains finite as $\rho\to\rho_{\max}$ and $dz/d\rho\to\infty$ there. For the Luneburg case the reconstructed surface is a spherical cap: $\rho$ reaches the rim with a vertical tangent, and the lens is closed. For the Eaton case, $n\sim r^{-1/2}$ as $r\to0$, so the optical length diverges and the surface cannot close at the bottom; the profile opens into a vertical tangent. Intermediate Morse profiles inherit the behavior of the nearer limit. Table I summarizes the correspondence.</p>
+
+      <table>
+        <caption>TABLE I. Parameter correspondence and surface behavior.</caption>
+        <thead>
+          <tr><th>Profile</th><th>$B$</th><th>$a$</th><th>$n^{2}(r)$</th><th>Equivalent surface</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Luneburg</td><td>1/2</td><td>−2</td><td>$2-r^{2}$</td><td>Closed, spherical cap</td></tr>
+          <tr><td>Morse</td><td>(1/2, 1)</td><td>(−2, −1)</td><td>$2r^{-2+1/B}-r^{-2+2/B}$</td><td>Interpolates between the limits</td></tr>
+          <tr><td>Eaton</td><td>1</td><td>−1</td><td>$2/r-1$</td><td>Open at the origin; vertical tangent</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="v-ray-tracing-validation">V. Ray-Tracing Validation</h2>
+
+      <h3>A. Method</h3>
+
+      <p>Two independent integrations are compared. In the GRIN medium, the ray equation</p>
+
+      <p class="math-display">\[ \frac{d}{ds}\left(n\frac{d\mathbf{r}}{ds}\right)=\nabla n \tag{9} \]</p>
+
+      <p>is integrated in polar coordinates with a fourth-order Runge–Kutta scheme and a fixed small step; convergence is checked by halving the step and comparing the exit point. On the surface, the geodesic equations for the metric (2) are integrated with the same scheme. The initial conditions are matched through (3). Because both problems are integrable up to quadrature, the comparison tests the construction rather than the integrator.</p>
+
+      <h3>B. Scenarios</h3>
+
+      <p>Three scenarios are considered, all with rays launched parallel to the optical axis at different impact parameters: the Luneburg profile, an intermediate Morse profile, and the Eaton profile. The expected behavior follows from the ray invariant. The Luneburg lens focuses a parallel bundle at the rear pole; the Eaton lens reverses each ray; the intermediate Morse lens focuses between the rim and the rear pole. Table II records the outcome of the numerical experiment.</p>
+
+      <p>Figure 2 shows the three traces with the paths clipped at the lens rim. The figure is not a schematic: every curve is integrated from the profile with the same step and stop condition. The intermediate case makes the distinction between a caustic and a point focus visible.</p>
+
+      <figure>
+        <div class="figure-scroll">
+          <picture>
+            <source media="(max-width: 700px)" srcset="/assets/figures/fig-rays-mobile.svg">
+            <img src="/assets/figures/fig-rays-light.svg" alt="Three panels of numerically traced rays through Luneburg, Morse and Eaton profiles, clipped at the lens rim.">
+          </picture>
+        </div>
+        <figcaption><strong>Fig. 2.</strong> Parallel rays through (A) Luneburg, $B=1/2$; (B) intermediate Morse, $B=3/4$; (C) Eaton, $B=1$. Paths are clipped at the rim. The caustic moves inward as $B$ increases; at $B=1$ the rays turn around.</figcaption>
+      </figure>
+
+      <table>
+        <caption>TABLE II. Ray-tracing scenarios and observed behavior.</caption>
+        <thead>
+          <tr><th>Profile</th><th>Initial rays</th><th>Expected</th><th>Observed</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Luneburg</td><td>Parallel to axis</td><td>Focus at rear pole</td><td>Focus recovered</td></tr>
+          <tr><td>Morse, intermediate</td><td>Parallel to axis</td><td>Focus between rim and pole</td><td>Intermediate focus recovered</td></tr>
+          <tr><td>Eaton</td><td>Parallel to axis</td><td>Retroreflection</td><td>Direction reversed</td></tr>
+        </tbody>
+      </table>
+
+      <p>In all three cases the surface trajectories reproduce the topology of the GRIN ray paths: a single focus for the Luneburg lens, an intermediate focus for the Morse lens, and a reversal for the Eaton lens. The comparison is qualitative in the sense that no experimental uncertainty is involved; the residual difference between the two integrations is at the level of the discretization error of the Runge–Kutta step.</p>
+
+      <h2 id="vi-discussion">VI. Discussion</h2>
+
+      <p>The construction separates two questions that are often conflated in transformation optics: whether an equivalent geometry exists, and whether the required medium can be built. The metric equivalence answers the first question. The closure criterion answers the second in the geometric-optics sense: a profile admits a closed geodesic lens exactly when its reconstructed surface closes. The Eaton limit shows that this is not automatic — the divergence of the index at the origin is a geometric obstruction, not a fabrication problem.</p>
+
+      <p>Three limitations should be stated. First, the treatment is scalar and geometric: polarization, Fresnel coefficients, and wave effects are outside its scope. Second, the construction assumes exact rotational symmetry; a fabricated surface will have finite tolerance, and the sensitivity of the focus to surface error is a separate study. Third, the ray tracing validates the geometry, not a particular realization. A natural next step is to pattern the surface as a dielectric metasurface and to compare the full-wave response with the geodesic prediction.</p>
+
+      <h2 id="vii-conclusion">VII. Conclusion</h2>
+
+      <p>The conformal Morse lens is the $(A=B,\,C=1)$ subclass of Cornbleet's general family, with the parameter correspondence $a=-1/B$. The metric-equivalence relations reduce the design of the lens to a single quadrature, and the resulting surfaces reproduce the focusing and retroreflection of the Luneburg and Eaton limits. The closure criterion turns the question of realizability into a property of the surface, which is the main conceptual gain of the geodesic-lens formulation.</p>
+    </article>
+  </div>
+
+  <section class="paper-refs" id="references" aria-label="References">
+    <h2>References</h2>
+    <ol>
+      <li>R. K. Luneburg, <em>Mathematical Theory of Optics</em>. Brown Univ. Press, 1944.</li>
+      <li>S. P. Morgan, “General solution of the Luneburg lens problem,” <em>J. Appl. Phys.</em>, vol. 29, no. 9, pp. 1358–1366, 1958. doi: 10.1063/1.1723435.</li>
+      <li>S. Cornbleet, <em>Microwave and Geometrical Optics</em>. Academic Press, 1994.</li>
+      <li>M. Šarbort and T. Tyc, “Spherical media and geodesic lenses in geometrical optics,” <em>J. Opt.</em>, vol. 14, no. 7, pp. 075103, 2012. doi: 10.1088/2040-8978/14/7/075103.</li>
+      <li>H. Chen, “The Morse lens,” arXiv:2002.03884, 2020. <a href="https://arxiv.org/abs/2002.03884">arXiv</a>.</li>
+      <li>J. B. Pendry, D. Schurig, and D. R. Smith, “Controlling electromagnetic fields,” <em>Science</em>, vol. 312, no. 5781, pp. 1780–1782, 2006. doi: 10.1126/science.1125907.</li>
+      <li>U. Leonhardt, “Optical conformal mapping,” <em>Science</em>, vol. 312, no. 5781, pp. 1777–1780, 2006. doi: 10.1126/science.1126493.</li>
+      <li>L. Xu and H. Chen, “Conformal transformation optics,” <em>Nat. Photonics</em>, vol. 9, no. 1, pp. 15–23, 2015. doi: 10.1038/nphoton.2014.274.</li>
+      <li>D. Schurig et al., “Metamaterial electromagnetic cloak at microwave frequencies,” <em>Science</em>, vol. 314, no. 5801, pp. 977–980, 2006. doi: 10.1126/science.1133628.</li>
+    </ol>
+  </section>
+
+  <section class="cite-box" id="cite" aria-label="Citation">
+    <h2>Cite this paper</h2>
+    <p><b>IEEE</b> X. Zheng, “Ray tracing and equivalent geodesic lenses for the Morse lens,” BSc (Hons) thesis, Xiamen Univ. Malaysia, Sepang, Malaysia, 2026.</p>
+    <p><b>APA</b> Zheng, X. (2026). Ray tracing and equivalent geodesic lenses for the Morse lens [Bachelor's thesis, Xiamen University Malaysia].</p>
+    <pre id="bibtex">@phdthesis{xiangsheng2026morse,
+  author  = {Zheng, Xiangsheng},
+  title   = {Ray tracing and equivalent geodesic lenses for the Morse lens},
+  school  = {Xiamen University Malaysia},
+  year    = {2026},
+  type    = {BSc (Hons) thesis},
+  address = {Sepang, Malaysia}
+}</pre>
+    <button class="copy-btn" type="button" data-copy="#bibtex">Copy BibTeX</button>
+  </section>
+</div>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__cta">
+      <div>
+        <p class="kicker kicker--light">Contact</p>
+        <h2>Let's talk about <em>light.</em></h2>
+        <a class="footer__email" href="mailto:helloworld.3a@gmail.com">helloworld.3a@gmail.com <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6"/></svg></a>
+      </div>
+      <a class="footer__toplink" href="#">Back to top <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13.5V2.5M3.5 7 8 2.5 12.5 7"/></svg></a>
+    </div>
+    <div class="footer__grid">
+      <div class="footer__col">
+        <h3>Explore</h3>
+        <a href="/research/">Research</a>
+        <a href="/notes/">Field notes</a>
+        <a href="/publications/">Publications</a>
+        <a href="/cv/">Curriculum vitae</a>
+        <a href="/about/">About</a>
+      </div>
+      <div class="footer__col">
+        <h3>Elsewhere</h3>
+        <a href="https://github.com/hello-zxs">GitHub <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6"/></svg></a>
+        <a href="mailto:helloworld.3a@gmail.com">Email</a>
+        <a href="/feed.xml">RSS</a>
+        <a href="/zh/" lang="zh-Hans">中文</a>
+      </div>
+      <div class="footer__col">
+        <h3>Colophon</h3>
+        <p>Designed and built by hand. Set in Newsreader and IBM Plex. Figures computed in the browser. No analytics, no trackers.</p>
+      </div>
+      <div class="footer__col">
+        <h3>Location</h3>
+        <p>London, Ontario<br>42.9849° N, 81.2453° W</p>
+        <p class="mono"><span data-clock>--:--</span> local time</p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Zheng Xiangsheng</span>
+      <span>zhengxs.com <span class="dotsep">/</span> Physics, geometry, light</span>
+      <span>Last updated 02 Nov 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script defer src="/assets/js/site.js"></script>
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/auto-render.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research — Zheng Xiangsheng</title>
+<meta name="description" content="Transformation optics, geodesic lenses and single-photon interference: three ways geometry decides the path of light.">
+<meta name="author" content="Zheng Xiangsheng">
+<link rel="canonical" href="https://zhengxs.com/research/">
+<meta name="theme-color" content="#08090B">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Zheng Xiangsheng">
+<meta property="og:title" content="Research — Zheng Xiangsheng">
+<meta property="og:description" content="Transformation optics, geodesic lenses and single-photon interference: three ways geometry decides the path of light.">
+<meta property="og:url" content="https://zhengxs.com/research/">
+<meta property="og:image" content="https://zhengxs.com/assets/images/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_CA">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Research — Zheng Xiangsheng">
+<meta name="twitter:description" content="Transformation optics, geodesic lenses and single-photon interference: three ways geometry decides the path of light.">
+<meta name="twitter:image" content="https://zhengxs.com/assets/images/og.png">
+
+<link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="alternate" type="application/rss+xml" title="Field notes — Zheng Xiangsheng" href="/feed.xml">
+<link rel="me" href="https://github.com/hello-zxs">
+
+<link rel="preload" href="/assets/fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/plex-sans-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
+<script>
+  document.documentElement.classList.add('js');
+  window.addEventListener('error', function () {
+    document.documentElement.classList.remove('js');
+  });
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Zheng Xiangsheng",
+  "url": "https://zhengxs.com/",
+  "jobTitle": "Physics MSc student",
+  "affiliation": {
+    "@type": "Organization",
+    "name": "Western University"
+  },
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "Xiamen University Malaysia"
+  },
+  "knowsAbout": [
+    "Transformation optics",
+    "Geodesic lenses",
+    "Gradient-index optics",
+    "Quantum optics"
+  ],
+  "email": "mailto:helloworld.3a@gmail.com",
+  "sameAs": [
+    "https://github.com/hello-zxs"
+  ]
+}
+</script>
+</head>
+
+<body class="page-inner">
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav" data-nav>
+  <div class="nav__inner">
+    <a class="brand" href="/" aria-label="zhengxs — home">
+      <svg class="brand__mark" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <circle cx="10" cy="10" r="6.6" stroke="currentColor" stroke-width="1"/>
+        <circle cx="10" cy="10" r="1.8" fill="#FF6A3D"/>
+        <path d="M10 .6v2.2M10 17.2v2.2M.6 10h2.2M17.2 10h2.2" stroke="currentColor" stroke-width="1"/>
+      </svg>
+      <span>zhengxs</span><span class="brand__dot" aria-hidden="true"></span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="/research/" class="is-active" aria-current="page">Research</a><a href="/notes/">Notes</a><a href="/publications/">Publications</a><a href="/cv/">CV</a><a href="/about/">About</a>
+    </nav>
+    <div class="nav__meta">
+      <span class="nav__clock" data-clock>LONDON <b>--:--</b></span>
+      <a class="nav__mail" href="mailto:helloworld.3a@gmail.com">Email</a>
+      <button class="nav__menu" type="button" data-menu-open aria-expanded="false" aria-controls="site-menu">
+        <span class="nav__menu-lines" aria-hidden="true"><i></i><i></i></span>
+        <span class="open-label">Menu</span><span class="close-label">Close</span>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="menu" id="site-menu" aria-hidden="true">
+  <nav class="menu__nav" aria-label="Menu">
+    <a href="/"><span>Home</span><em aria-hidden="true">01</em></a><a href="/research/" class="is-active"><span>Research</span><em aria-hidden="true">02</em></a><a href="/notes/"><span>Notes</span><em aria-hidden="true">03</em></a><a href="/publications/"><span>Publications</span><em aria-hidden="true">04</em></a><a href="/cv/"><span>CV</span><em aria-hidden="true">05</em></a><a href="/about/"><span>About</span><em aria-hidden="true">06</em></a><a href="/zh/"><span>中文</span><em aria-hidden="true">07</em></a>
+  </nav>
+  <div class="menu__foot">
+    <div>Physics MSc · Western University<br>London, Ontario, Canada</div>
+    <div><a href="mailto:helloworld.3a@gmail.com">helloworld.3a@gmail.com</a><br><a href="https://github.com/hello-zxs">github.com/hello-zxs</a></div>
+  </div>
+</div>
+
+<main id="main">
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead__grid">
+      <div>
+        <p class="kicker kicker--light">Research</p>
+        <h1 class="masthead__title">How geometry <em>becomes light.</em></h1>
+        <p class="masthead__dek">Three threads — a theory, an object, an experiment — tied by one question: what does it mean for light to follow a geodesic?</p>
+      </div>
+      <aside class="masthead__side">
+        <span><b>01–03</b> Three threads</span>
+        <span><b>Methods</b> Ray tracing · conformal maps · single photons</span>
+        <span><b>Anchor</b> The Morse lens thesis, 2026</span>
+        <a class="btn btn--ghost btn--sm" href="/papers/morse-lens/">Read the thesis <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10.5M9 3.5 13.5 8 9 12.5"/></svg></a>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<div class="read-progress" data-progress></div>
+
+<section class="page-body">
+  <div class="wrap">
+    <div class="research-layout">
+      <aside class="research-toc" aria-label="On this page">
+        <p class="research-toc__title">On this page</p>
+        <a href="#transformation-optics" data-toc-link><span>01</span> Transformation optics</a>
+        <a href="#geodesic-lenses" data-toc-link><span>02</span> Geodesic lenses</a>
+        <a href="#quantum-optics" data-toc-link><span>03</span> Quantum optics</a>
+        <a href="#open-questions" data-toc-link><span>04</span> Open questions</a>
+        <a href="#reading" data-toc-link><span>05</span> Further reading</a>
+      </aside>
+
+      <div class="research-main">
+        <div class="research-intro reveal">
+          <p>One sentence holds the programme together: <strong>design the geometry, and light will follow.</strong> A refractive index is a metric; a curved surface is a lens; a coordinate transformation is a material. I work on the mathematics that makes those equivalences exact — and on the numerical experiments that keep them honest.</p>
+        </div>
+
+        <section class="research-section" id="transformation-optics">
+          <div class="research-section__head reveal">
+            <div>
+              <span class="research-section__no">01 / Theory</span>
+              <h2>Transformation optics</h2>
+            </div>
+            <p>Maxwell's equations are form-invariant under coordinate transformations. That single fact turns a design problem in materials into a design problem in geometry.</p>
+          </div>
+
+          <figure class="lab reveal">
+            <div class="lab__bar">
+              <span class="lab__id">Fig. R1</span>
+              <span class="lab__title">Cloak map / virtual space → physical space</span>
+              <span data-cloak-readout>72%</span>
+            </div>
+            <div class="lab__stage">
+              <canvas data-cloak role="img" aria-label="A Cartesian grid distorted by a transformation-optics cloak map, with a circular hidden region at the centre."></canvas>
+            </div>
+            <div class="lab__controls">
+              <label for="cloak-strength">Transformation strength</label>
+              <input class="range" id="cloak-strength" type="range" min="0" max="1" step="0.01" value="0.72" data-cloak-range>
+              <span class="lab__spacer"></span>
+              <button class="btn-lab" type="button" data-cloak-reset>Reset</button>
+            </div>
+            <figcaption class="lab__foot"><b>Fig. R1</b> — A grid in virtual space is compressed into an annulus. The central disk is the hidden region; at zero strength the map is the identity. Move the slider to change the compression.</figcaption>
+          </figure>
+
+          <div class="research-section__body">
+            <div class="prose">
+              <p>Start with Fermat. In a medium with refractive index $n(\mathbf{r})$, a ray makes the optical path</p>
+              <p class="math-display">\[ S=\int n(\mathbf{r})\,ds \]</p>
+              <p>stationary. That is the statement that rays are geodesics of the optical metric $g_{ij}=n^{2}\delta_{ij}$. Now change coordinates, $\mathbf{r}\mapsto\mathbf{r}'$, and write the same metric in the new frame. Maxwell's equations do not notice the change; the constitutive parameters do.</p>
+              <p>If $\Lambda$ is the Jacobian of the transformation, the transformed medium is</p>
+              <p class="math-display">\[ \varepsilon'=\frac{\Lambda\,\varepsilon\,\Lambda^{T}}{\det\Lambda} \]</p>
+              <p class="math-display">\[ \mu'=\frac{\Lambda\,\mu\,\Lambda^{T}}{\det\Lambda}. \]</p>
+              <p>The physics is unchanged; the material has absorbed the geometry. A region of space can be compressed into a shell, and the interior becomes invisible to the field outside. This is the transformation-optics cloak, proposed independently by Pendry and by Leonhardt in 2006, and demonstrated at microwave frequencies by Schurig and co-workers the same year.</p>
+              <p>What makes the idea practical is a restriction: if the transformation is conformal in two dimensions, the required medium is isotropic. The price is that only a subset of transformations is available. Much of the field since 2006 has been an argument about that trade — anisotropy for generality, conformality for fabrication, metasurfaces for both.</p>
+              <p>My interest is the boundary between the two. A cloak that cannot be built is a statement about a metric, not a device. The useful question is not “does an equivalent medium exist?” but “what is the smallest change in the geometry that survives the tolerances of a real surface?”</p>
+            </div>
+            <aside class="research-section__notes">
+              <h3>Open questions</h3>
+              <ul>
+                <li>Bandwidth and loss: which transformations survive a dispersive, lossy medium?</li>
+                <li>Conformal maps in 3D: what is the analogue of the 2D Riemann mapping?</li>
+                <li>Inverse design: can a target ray family be turned into a manufacturable surface directly?</li>
+              </ul>
+            </aside>
+          </div>
+        </section>
+
+        <section class="research-section" id="geodesic-lenses">
+          <div class="research-section__head reveal">
+            <div>
+              <span class="research-section__no">02 / Geometry</span>
+              <h2>Geodesic lenses</h2>
+            </div>
+            <p>A spherically symmetric index profile is a surface of revolution in disguise. The disguise is exact: rays in the medium are geodesics on the surface.</p>
+          </div>
+
+          <figure class="lab reveal">
+            <div class="lab__bar">
+              <span class="lab__id">Fig. R2</span>
+              <span class="lab__title">Luneburg lens ≡ unit sphere</span>
+              <span>Drag to rotate</span>
+            </div>
+            <div class="lab__stage lab__stage--tall">
+              <canvas data-surface role="img" aria-label="A rotating wireframe sphere with orange great-circle geodesics drawn on its surface."></canvas>
+            </div>
+            <figcaption class="lab__foot"><b>Fig. R2</b> — The Luneburg lens is exactly a sphere. The orange curves are great circles; under the metric equivalence they are the rays of the lens. Drag to rotate the surface.</figcaption>
+          </figure>
+
+          <div class="research-section__body">
+            <div class="prose">
+              <p>For a radially symmetric profile $n=n(r)$, the optical metric is</p>
+              <p class="math-display">\[ ds^{2}=n^{2}(r)\left(dr^{2}+r^{2}d\varphi^{2}\right). \]</p>
+              <p>Look for a surface of revolution with profile $z(\rho)$ whose metric is the same. Matching term by term gives the three equivalence relations</p>
+              <p class="math-display">\[ \rho=n(r)\,r,\qquad ds=n(r)\,dr, \]</p>
+              <p class="math-display">\[ dz^{2}=ds^{2}-d\rho^{2}. \]</p>
+              <p>The first relation is the projected radius; the second identifies optical arc length with surface arc length; the third fixes the height. Differentiating $\rho=nr$ gives the master identity $s'(\rho)\,(n+rn')=n$, and the surface follows by quadrature:</p>
+              <p class="math-display">\[ z(\rho)=\int_{0}^{\rho}\sqrt{s'(\xi)^{2}-1}\;d\xi. \]</p>
+              <p>The Luneburg profile makes the geometry unusually explicit. With $n^{2}=2-r^{2}$,</p>
+              <p class="math-display">\[ \rho^{2}=r^{2}(2-r^{2})=1-(1-r^{2})^{2}, \]</p>
+              <p>so writing $z=1-r^{2}$ gives $\rho^{2}+z^{2}=1$. The Luneburg lens is a unit sphere. Every parallel ray focuses on the opposite pole, and every geodesic is a great circle.</p>
+              <p>The Morse family generalises this. The profile</p>
+              <p class="math-display">\[ n^{2}(r)=2r^{-2+1/B}-r^{-2+2/B},\qquad 0&lt;r\le 1, \]</p>
+              <p>reduces to Luneburg at $B=\tfrac12$ and to Eaton at $B=1$. My thesis proves that the conformal Morse lens is the $(A=B,\,C=1)$ slice of Cornbleet's general family, with $a=-1/B$, and constructs the equivalent surfaces for the intermediate profiles. The numerical ray traces agree with the surface geodesics to the discretisation error of the integrator.</p>
+              <p>There is a closure criterion hidden in the quadrature: a real surface exists only while $s'(\rho)\ge1$, and a closed lens requires the height to remain finite at the rim. The Eaton limit fails at the origin — the index diverges, the surface opens, and the retroreflector is not a closed lens. That is a geometric obstruction, not a fabrication problem.</p>
+              <p><a href="/papers/morse-lens/">Read the full thesis <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10.5M9 3.5 13.5 8 9 12.5"/></svg></a></p>
+            </div>
+            <aside class="research-section__notes">
+              <h3>Open questions</h3>
+              <ul>
+                <li>Surface tolerance: how much figure error can a geodesic lens tolerate before the caustic blurs?</li>
+                <li>Realisation: can a dielectric metasurface approximate the required metric?</li>
+                <li>Beyond revolution: which 3D metrics admit a closed, isotropic realisation?</li>
+              </ul>
+            </aside>
+          </div>
+        </section>
+
+        <section class="research-section" id="quantum-optics">
+          <div class="research-section__head reveal">
+            <div>
+              <span class="research-section__no">03 / Experiment</span>
+              <h2>Quantum optics</h2>
+            </div>
+            <p>At the single-photon level, interference is not a wave passing through two slits. It is a statement about what the experiment could have told us.</p>
+          </div>
+
+          <figure class="lab reveal">
+            <div class="lab__bar">
+              <span class="lab__id">Fig. R3</span>
+              <span class="lab__title">Double slit / single-photon detection</span>
+              <span>N = <b data-photon-count>0</b></span>
+            </div>
+            <div class="lab__stage">
+              <canvas data-photons role="img" aria-label="Single photons arriving one at a time on a detector screen, building up a double-slit interference pattern."></canvas>
+            </div>
+            <div class="lab__controls">
+              <button class="btn-lab" type="button" data-photon-fire>+500 photons</button>
+              <button class="btn-lab" type="button" data-photon-reset>Reset</button>
+              <button class="btn-lab" type="button" data-photon-mode>Which-path: <span data-photon-mode-label>OFF</span></button>
+              <span class="lab__spacer"></span>
+              <span>Visibility <b data-photon-vis>0.98</b></span>
+            </div>
+            <figcaption class="lab__foot"><b>Fig. R3</b> — One photon at a time. With no path information the detections build a fringe pattern. Switch which-path information on and the fringes disappear, leaving two overlapping envelopes.</figcaption>
+          </figure>
+
+          <div class="research-section__body">
+            <div class="prose">
+              <p>Send photons through a double slit one at a time. Each photon produces one detection. After a few hundred, the detections trace an interference pattern; after a few thousand, the pattern is unmistakable. Nothing in the apparatus knows in advance where a particular photon will land.</p>
+              <p>The amplitude at the screen is the sum of the amplitudes from the two slits, and the probability is the square:</p>
+              <p class="math-display">\[ I(x)\propto\left|\psi_{1}(x)+\psi_{2}(x)\right|^{2}. \]</p>
+              <p>For slit separation $d$ and screen distance $L$, the fringe spacing is $\Delta x=\lambda L/d$. The envelope is set by the slit width. The pattern is not a property of a single photon; it is a property of the ensemble, and of the fact that the two paths were indistinguishable.</p>
+              <p>Make them distinguishable. A which-path detector — a polariser, a path marker, a detector at one slit — gives the experiment information about the route. The interference term disappears, and the pattern becomes the sum of two single-slit envelopes. The visibility $V$ and the path distinguishability $D$ trade off: $V^{2}+D^{2}\le1$. This is complementarity in its quantitative form.</p>
+              <p>The teaching-lab version is less exotic than the thought experiment and more instructive. Alignment matters; a few microns of slit tilt washes out the fringes. Dark counts add a flat background. The source must be attenuated until the probability of two photons in the apparatus is small. What looks like a clean conceptual story becomes a sequence of experimental decisions — which is exactly why it is worth doing.</p>
+              <p>The figure is a simulation of that experiment, not a claim of new data. It uses $\lambda=633$ nm, $d=0.12$ mm and $L=1.2$ m; the dots are sampled from the same intensity law the apparatus would obey.</p>
+            </div>
+            <aside class="research-section__notes">
+              <h3>Open questions</h3>
+              <ul>
+                <li>What counts as a which-path measurement when the detector is a material that is itself quantum?</li>
+                <li>How do dark counts and finite coherence change the measured visibility?</li>
+                <li>Can the same geometry that shapes a classical ray also shape a single-photon wavefront?</li>
+              </ul>
+            </aside>
+          </div>
+        </section>
+
+        <section class="research-section" id="open-questions">
+          <div class="research-section__head reveal">
+            <div>
+              <span class="research-section__no">04 / Programme</span>
+              <h2>What I want to know next</h2>
+            </div>
+            <p>Three questions that connect the threads — and that I would like to argue about with someone.</p>
+          </div>
+          <div class="research-section__body">
+            <div class="prose">
+              <ol>
+                <li><strong>Which profiles admit a closed, manufacturable surface?</strong> The closure criterion is a first filter, not a design rule. I want a classification that includes tolerance and finite aperture.</li>
+                <li><strong>Can a conformal design survive fabrication?</strong> A sphere is exact; a machined sphere is not. The sensitivity of the caustic to surface error is a well-posed numerical question.</li>
+                <li><strong>What does a which-path measurement do to the field?</strong> The textbook story is about information. A detector is also a physical object with a response time and a back-action, and I would like to understand the bridge.</li>
+              </ol>
+              <p>If any of these is close to your work, write to me. I am especially interested in collaborations that put a computed surface into an optical test.</p>
+            </div>
+            <aside class="research-section__notes">
+              <h3>Methods</h3>
+              <ul>
+                <li>Python / NumPy ray tracing with RK4 and convergence checks.</li>
+                <li>Mathematica for symbolic limits and series.</li>
+                <li>COMSOL for full-field checks when scalar optics is not enough.</li>
+              </ul>
+            </aside>
+          </div>
+        </section>
+
+        <section class="research-section" id="reading">
+          <div class="research-section__head reveal">
+            <div>
+              <span class="research-section__no">05 / Reading</span>
+              <h2>The shelf behind this page</h2>
+            </div>
+            <p>The papers and books I return to. Links go to the DOI or the arXiv record.</p>
+          </div>
+          <div class="prose reveal">
+            <ol class="reading-list">
+              <li>R. K. Luneburg, <em>Mathematical Theory of Optics</em>. Brown University Press, 1944.</li>
+              <li>J. B. Pendry, D. Schurig, and D. R. Smith, “Controlling electromagnetic fields,” <em>Science</em> <strong>312</strong>, 1780–1782 (2006). <a href="https://doi.org/10.1126/science.1125907">doi</a></li>
+              <li>U. Leonhardt, “Optical conformal mapping,” <em>Science</em> <strong>312</strong>, 1777–1780 (2006). <a href="https://doi.org/10.1126/science.1126493">doi</a></li>
+              <li>D. Schurig et al., “Metamaterial electromagnetic cloak at microwave frequencies,” <em>Science</em> <strong>314</strong>, 977–980 (2006). <a href="https://doi.org/10.1126/science.1133628">doi</a></li>
+              <li>M. Šarbort and T. Tyc, “Spherical media and geodesic lenses in geometrical optics,” <em>J. Opt.</em> <strong>14</strong>, 075103 (2012). <a href="https://doi.org/10.1088/2040-8978/14/7/075103">doi</a></li>
+              <li>H. Chen, “The Morse lens,” arXiv:2002.03884 (2020). <a href="https://arxiv.org/abs/2002.03884">arXiv</a></li>
+              <li>M. Born and E. Wolf, <em>Principles of Optics</em>, 7th ed. Cambridge University Press, 1999.</li>
+              <li>M. O. Scully and K. Drühl, “Quantum eraser: A proposed photon correlation experiment concerning observation and ‘delayed choice’ in quantum mechanics,” <em>Phys. Rev. A</em> <strong>25</strong>, 2208 (1982). <a href="https://doi.org/10.1103/PhysRevA.25.2208">doi</a></li>
+            </ol>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__cta">
+      <div>
+        <p class="kicker kicker--light">Contact</p>
+        <h2>Let's talk about <em>light.</em></h2>
+        <a class="footer__email" href="mailto:helloworld.3a@gmail.com">helloworld.3a@gmail.com <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6"/></svg></a>
+      </div>
+      <a class="footer__toplink" href="#">Back to top <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13.5V2.5M3.5 7 8 2.5 12.5 7"/></svg></a>
+    </div>
+    <div class="footer__grid">
+      <div class="footer__col">
+        <h3>Explore</h3>
+        <a href="/research/">Research</a>
+        <a href="/notes/">Field notes</a>
+        <a href="/publications/">Publications</a>
+        <a href="/cv/">Curriculum vitae</a>
+        <a href="/about/">About</a>
+      </div>
+      <div class="footer__col">
+        <h3>Elsewhere</h3>
+        <a href="https://github.com/hello-zxs">GitHub <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6"/></svg></a>
+        <a href="mailto:helloworld.3a@gmail.com">Email</a>
+        <a href="/feed.xml">RSS</a>
+        <a href="/zh/" lang="zh-Hans">中文</a>
+      </div>
+      <div class="footer__col">
+        <h3>Colophon</h3>
+        <p>Designed and built by hand. Set in Newsreader and IBM Plex. Figures computed in the browser. No analytics, no trackers.</p>
+      </div>
+      <div class="footer__col">
+        <h3>Location</h3>
+        <p>London, Ontario<br>42.9849° N, 81.2453° W</p>
+        <p class="mono"><span data-clock>--:--</span> local time</p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Zheng Xiangsheng</span>
+      <span>zhengxs.com <span class="dotsep">/</span> Physics, geometry, light</span>
+      <span>Last updated 02 Nov 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script defer src="/assets/js/site.js"></script>
+<script defer src="/assets/vendor/katex/katex.min.js"></script>
+<script defer src="/assets/vendor/katex/auto-render.min.js"></script>
+<script defer src="/assets/js/labs.js"></script>
+</body>
+</html>
