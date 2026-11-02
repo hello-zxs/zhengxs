@@ -13,14 +13,16 @@ notes/index.html               Field notes index
 notes/*/index.html             Three long-form notes (KaTeX, figures, code)
 publications/index.html        Thesis, notes, work in progress
 papers/morse-lens/index.html   The BSc thesis, typeset for the web
-cv/index.html                  Curriculum vitae
+cv/index.html                  Curriculum vitae (archive; the Record is canonical)
 about/index.html               Profile, method, colophon
 zh/index.html                  Chinese introduction
+matrix/index.html              The three-site matrix: roles, canonical map, dock spec
 404.html                       Ray not found
 
 assets/css/site.css            The whole design system
 assets/js/site.js              Navigation, clock, reveals, math, copy buttons
 assets/js/labs.js             Four computed figures (canvas, no libraries)
+assets/matrix/                 The portable matrix dock (matrix.css + matrix.js)
 assets/figures/                Scientific SVG figures (computed, not traced)
 assets/fonts/                  Self-hosted Newsreader and IBM Plex
 assets/vendor/katex/           Self-hosted KaTeX
@@ -29,6 +31,28 @@ feed.xml, sitemap.xml          RSS and sitemap
 CNAME                          zhengxs.com
 .nojekyll                      Serve files as-is on GitHub Pages
 ```
+
+## The matrix
+
+zhengxs.com is the **Index** of a three-site matrix:
+
+| Role | Domain | What it is for |
+|---|---|---|
+| **Index** | [zhengxs.com](https://zhengxs.com) | The person, now: profile, selected work, field notes |
+| **Lab** | [qmentropy.com](https://qmentropy.com) | Instruments, papers and computations in light and geometry |
+| **Record** | [zhengxiangsheng.com](https://zhengxiangsheng.com) | CV, education, publications and the formal record |
+
+The sites share a typographic hand, three role colours (Index orange, Lab cyan, Record cobalt) and one small dock. They do **not** share a CMS or a deployment pipeline. The rule is **one artifact, one canonical home**: notes on the Index, full papers in the Lab, the CV in the Record.
+
+The dock is portable. On any site:
+
+```html
+<link rel="stylesheet" href="/assets/matrix/matrix.css">
+<script defer src="/assets/matrix/matrix.js"></script>
+<meta name="matrix-site" content="index">
+```
+
+Copy `assets/matrix/` and the two font files (`newsreader-var.woff2`, `plex-mono-400/500.woff2`) into the target site; edit the `ROLES` array in `matrix.js` to add a fourth node. The dock is hidden on phones (it would cover content); the footer strip and each site's mobile menu carry the same links. The full specification is at [zhengxs.com/matrix](https://zhengxs.com/matrix/).
 
 ## Local preview
 

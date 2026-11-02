@@ -9,6 +9,7 @@
 <link rel="canonical" href="https://zhengxs.com/cv/">
 <meta name="theme-color" content="#08090B">
 <meta name="color-scheme" content="light">
+<meta name="matrix-site" content="index">
 <meta name="robots" content="index, follow">
 
 <meta property="og:type" content="profile">
@@ -37,6 +38,7 @@
 <link rel="preload" href="/assets/fonts/plex-sans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/matrix/matrix.css">
 
 <script>
   document.documentElement.classList.add('js');
@@ -74,7 +76,7 @@
 </header>
 <div class="menu" id="site-menu" aria-hidden="true">
   <nav class="menu__nav" aria-label="Menu">
-    <a href="/"><span>Home</span><em aria-hidden="true">01</em></a><a href="/research/"><span>Research</span><em aria-hidden="true">02</em></a><a href="/notes/"><span>Notes</span><em aria-hidden="true">03</em></a><a href="/publications/"><span>Publications</span><em aria-hidden="true">04</em></a><a href="/cv/" class="is-active"><span>CV</span><em aria-hidden="true">05</em></a><a href="/about/"><span>About</span><em aria-hidden="true">06</em></a><a href="/zh/"><span>中文</span><em aria-hidden="true">07</em></a>
+    <a href="/"><span>Home</span><em aria-hidden="true">01</em></a><a href="/research/"><span>Research</span><em aria-hidden="true">02</em></a><a href="/notes/"><span>Notes</span><em aria-hidden="true">03</em></a><a href="/publications/"><span>Publications</span><em aria-hidden="true">04</em></a><a href="/cv/" class="is-active"><span>CV</span><em aria-hidden="true">05</em></a><a href="/about/"><span>About</span><em aria-hidden="true">06</em></a><a href="/matrix/"><span>The matrix</span><em aria-hidden="true">07</em></a><a href="/zh/"><span>中文</span><em aria-hidden="true">08</em></a>
   </nav>
   <div class="menu__foot">
     <div>Physics MSc · Western University<br>London, Ontario, Canada</div>
@@ -223,6 +225,7 @@
         <a href="/publications/">Publications</a>
         <a href="/cv/">Curriculum vitae</a>
         <a href="/about/">About</a>
+        <a href="/matrix/">The matrix</a>
       </div>
       <div class="footer__col">
         <h3>Elsewhere</h3>
@@ -241,6 +244,13 @@
         <p class="mono"><span data-clock>--:--</span> local time</p>
       </div>
     </div>
+    <nav class="mx-strip" aria-label="The matrix">
+      <span class="mx-strip__label">The matrix</span>
+      <a data-site="index" class="is-current" aria-current="page" href="https://zhengxs.com/">Index <em>zhengxs.com</em></a>
+      <a data-site="lab" href="https://qmentropy.com/">Lab <em>qmentropy.com</em></a>
+      <a data-site="record" href="https://zhengxiangsheng.com/">Record <em>zhengxiangsheng.com</em></a>
+      <a class="mx-strip__about" href="/matrix/">About the matrix &nearr;</a>
+    </nav>
     <div class="footer__bottom">
       <span>© 2026 Zheng Xiangsheng</span>
       <span>zhengxs.com <span class="dotsep">/</span> Physics, geometry, light</span>
@@ -250,6 +260,7 @@
 </footer>
 
 <script defer src="/assets/js/site.js"></script>
+<script defer src="/assets/matrix/matrix.js"></script>
 
 </body>
 </html>

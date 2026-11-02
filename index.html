@@ -9,6 +9,7 @@
 <link rel="canonical" href="https://zhengxs.com/">
 <meta name="theme-color" content="#08090B">
 <meta name="color-scheme" content="light">
+<meta name="matrix-site" content="index">
 <meta name="robots" content="index, follow">
 
 <meta property="og:type" content="website">
@@ -37,6 +38,7 @@
 <link rel="preload" href="/assets/fonts/plex-sans-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/matrix/matrix.css">
 
 <script>
   document.documentElement.classList.add('js');
@@ -49,6 +51,7 @@
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Zheng Xiangsheng",
+  "alternateName": "郑翔升",
   "url": "https://zhengxs.com/",
   "jobTitle": "Physics MSc student",
   "affiliation": {
@@ -67,7 +70,9 @@
   ],
   "email": "mailto:helloworld.3a@gmail.com",
   "sameAs": [
-    "https://github.com/hello-zxs"
+    "https://github.com/hello-zxs",
+    "https://qmentropy.com/",
+    "https://zhengxiangsheng.com/"
   ]
 }
 </script>
@@ -100,7 +105,7 @@
 </header>
 <div class="menu" id="site-menu" aria-hidden="true">
   <nav class="menu__nav" aria-label="Menu">
-    <a href="/"><span>Home</span><em aria-hidden="true">01</em></a><a href="/research/"><span>Research</span><em aria-hidden="true">02</em></a><a href="/notes/"><span>Notes</span><em aria-hidden="true">03</em></a><a href="/publications/"><span>Publications</span><em aria-hidden="true">04</em></a><a href="/cv/"><span>CV</span><em aria-hidden="true">05</em></a><a href="/about/"><span>About</span><em aria-hidden="true">06</em></a><a href="/zh/"><span>中文</span><em aria-hidden="true">07</em></a>
+    <a href="/"><span>Home</span><em aria-hidden="true">01</em></a><a href="/research/"><span>Research</span><em aria-hidden="true">02</em></a><a href="/notes/"><span>Notes</span><em aria-hidden="true">03</em></a><a href="/publications/"><span>Publications</span><em aria-hidden="true">04</em></a><a href="/cv/"><span>CV</span><em aria-hidden="true">05</em></a><a href="/about/"><span>About</span><em aria-hidden="true">06</em></a><a href="/matrix/"><span>The matrix</span><em aria-hidden="true">07</em></a><a href="/zh/"><span>中文</span><em aria-hidden="true">08</em></a>
   </nav>
   <div class="menu__foot">
     <div>Physics MSc · Western University<br>London, Ontario, Canada</div>
@@ -327,6 +332,38 @@
   </div>
 </section>
 
+<section class="section matrix-home">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <p class="kicker"><span class="kicker__no">06</span> The matrix</p>
+        <h2 class="h2">One practice, <em>three sites.</em></h2>
+      </div>
+      <p class="section-head__aside">A person is not one page. This is the Index; the Lab and the Record live next door. <a class="text-link" href="/matrix/">How the matrix fits together <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10.5M9 3.5 13.5 8 9 12.5"/></svg></a></p>
+    </div>
+    <div class="matrix-home__grid">
+      <a class="matrix-home__card reveal" data-site="index" href="https://zhengxs.com/">
+        <span class="matrix-home__no">01 / Index</span>
+        <h3>The person, now.</h3>
+        <p>Research, field notes, selected work and what I am doing at the moment.</p>
+        <span class="matrix-home__meta">zhengxs.com <em>You are here</em></span>
+      </a>
+      <a class="matrix-home__card reveal" data-site="lab" href="https://qmentropy.com/" style="--d:.08s">
+        <span class="matrix-home__no">02 / Lab</span>
+        <h3>The research, in depth.</h3>
+        <p>Instruments, papers and the computational notebook — where a figure can be rerun.</p>
+        <span class="matrix-home__meta">qmentropy.com <em>Experiments</em></span>
+      </a>
+      <a class="matrix-home__card reveal" data-site="record" href="https://zhengxiangsheng.com/" style="--d:.16s">
+        <span class="matrix-home__no">03 / Record</span>
+        <h3>The formal record.</h3>
+        <p>CV, education, publications and the dossier for committees and collaborators.</p>
+        <span class="matrix-home__meta">zhengxiangsheng.com <em>Curriculum vitae</em></span>
+      </a>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <footer class="footer">
@@ -347,6 +384,7 @@
         <a href="/publications/">Publications</a>
         <a href="/cv/">Curriculum vitae</a>
         <a href="/about/">About</a>
+        <a href="/matrix/">The matrix</a>
       </div>
       <div class="footer__col">
         <h3>Elsewhere</h3>
@@ -365,6 +403,13 @@
         <p class="mono"><span data-clock>--:--</span> local time</p>
       </div>
     </div>
+    <nav class="mx-strip" aria-label="The matrix">
+      <span class="mx-strip__label">The matrix</span>
+      <a data-site="index" class="is-current" aria-current="page" href="https://zhengxs.com/">Index <em>zhengxs.com</em></a>
+      <a data-site="lab" href="https://qmentropy.com/">Lab <em>qmentropy.com</em></a>
+      <a data-site="record" href="https://zhengxiangsheng.com/">Record <em>zhengxiangsheng.com</em></a>
+      <a class="mx-strip__about" href="/matrix/">About the matrix &nearr;</a>
+    </nav>
     <div class="footer__bottom">
       <span>© 2026 Zheng Xiangsheng</span>
       <span>zhengxs.com <span class="dotsep">/</span> Physics, geometry, light</span>
@@ -374,6 +419,7 @@
 </footer>
 
 <script defer src="/assets/js/site.js"></script>
+<script defer src="/assets/matrix/matrix.js"></script>
 <script defer src="/assets/js/labs.js"></script>
 </body>
 </html>
