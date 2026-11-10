@@ -5,7 +5,7 @@
     <link>https://zhengxs.com/notes/</link>
     <description>Working notes on transformation optics, geodesic lenses and quantum optics.</description>
     <language>en-ca</language>
-    <lastBuildDate>Mon, 02 Nov 2026 09:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 10 Nov 2026 09:00:00 -0500</lastBuildDate>
     <atom:link href="https://zhengxs.com/feed.xml" rel="self" type="application/rss+xml"/>
 
     <item>
@@ -13,7 +13,7 @@
       <link>https://zhengxs.com/notes/why-a-lens-is-a-surface/</link>
       <guid isPermaLink="true">https://zhengxs.com/notes/why-a-lens-is-a-surface/</guid>
       <pubDate>Mon, 02 Nov 2026 09:00:00 -0500</pubDate>
-      <description>The metric equivalence that turns a gradient-index problem into a problem of curved geometry — and why the Luneburg lens is exactly a sphere.</description>
+      <description>The metric equivalence that turns a gradient-index problem into a problem of curved geometry — and why the Luneburg lens is a dome, not a sphere. Revised 10 Nov 2026.</description>
     </item>
 
     <item>

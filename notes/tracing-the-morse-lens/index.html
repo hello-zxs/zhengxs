@@ -52,6 +52,7 @@
   "@type": "BlogPosting",
   "headline": "Tracing a ray through the Morse lens",
   "datePublished": "2026-10-24",
+  "dateModified": "2026-11-10",
   "author": {
     "@type": "Person",
     "name": "Zheng Xiangsheng"
@@ -108,6 +109,7 @@
     <div class="note-meta">
       <span class="author">Zheng Xiangsheng</span>
       <span>24 Oct 2026</span>
+      <span>Revised 10 Nov 2026</span>
       <span>11 min read</span>
       <span>Working note</span>
     </div>
@@ -194,10 +196,10 @@ def trace(b, B, h=0.0025, x0=-1.3):
 
   <h2>Does the step size matter?</h2>
 
-  <p>Take a bundle of parallel rays with impact parameters $b\in[-0.8,0.8]$, find the first axis crossing of each ray, and look at the mean and the RMS spread. The table compares four step sizes. The reference is not an analytic formula but the finest integration; the point is to see what changes.</p>
+  <p>Take a bundle of parallel rays with impact parameters $b=\pm0.1,\pm0.2,\dots,\pm0.8$, find the first axis crossing of each ray, and look at the mean and the RMS spread. The table compares four step sizes. The reference is not an analytic formula but the finest integration; the point is to see what changes.</p>
 
   <table>
-    <caption>TABLE I. Focus statistics versus RK4 step size (16 rays, $x_0=-1.3$).</caption>
+    <caption>TABLE I. Focus statistics versus RK4 step size (16 rays, $b=\pm0.1,\pm0.2,\dots,\pm0.8$; $x_0=-1.3$).</caption>
     <thead>
       <tr><th>$h$</th><th>$\bar{x}$, $B=\tfrac12$</th><th>RMS, $B=\tfrac12$</th><th>$\bar{x}$, $B=\tfrac34$</th><th>RMS, $B=\tfrac34$</th></tr>
     </thead>
@@ -221,21 +223,27 @@ def trace(b, B, h=0.0025, x0=-1.3):
 
   <h2>What I would check next</h2>
 
-  <p>Three checks would make the tracer more useful. First, a conserved quantity: for a time-independent index the ray invariant $n\cos\psi$ should be constant along the path, and its drift is a cheap error monitor. Second, an analytic limit: the Luneburg case has a closed-form focus, so it can calibrate the integrator independently of the surface construction. Third, a convergence study in the surface metric, not only in the bulk: the geodesic integration and the GRIN integration should agree at the same rate.</p>
+  <p>Three checks would make the tracer more useful. First, a conserved quantity: for a rotationally symmetric index Bouguer's invariant $n\,r\sin\psi$ — the optical angular momentum, with $\psi$ the angle between the ray and the radius — is constant along the path, and its drift is a cheap error monitor. In the Cartesian variables of the code it is $n\,(x\,u_{y}-y\,u_{x})$. Second, an analytic limit: the Luneburg case has a closed-form focus, so it can calibrate the integrator independently of the surface construction. Third, a convergence study in the surface metric, not only in the bulk: the geodesic integration and the GRIN integration should agree at the same rate.</p>
 
   <p>None of these is difficult. They are the difference between a picture and an experiment.</p>
+
+  <h2 id="revisions">Revision history</h2>
+  <ul class="revisions">
+    <li><b>10 Nov 2026</b> — Named the right conserved quantity. The first version proposed monitoring “$n\cos\psi$”, which is not conserved in a rotationally symmetric medium; the invariant is Bouguer's $n\,r\sin\psi$. The ray set behind Table I is now stated exactly, so the table can be regenerated from the listing, and the Šarbort–Tyc reference carries the right article number.</li>
+    <li><b>24 Oct 2026</b> — First published.</li>
+  </ul>
 
   <h2>References</h2>
   <ol class="reading-list">
     <li>R. K. Luneburg, <em>Mathematical Theory of Optics</em>. Brown University Press, 1944.</li>
-    <li>M. Šarbort and T. Tyc, “Spherical media and geodesic lenses in geometrical optics,” <em>J. Opt.</em> <strong>14</strong>, 075103 (2012). <a href="https://doi.org/10.1088/2040-8978/14/7/075103">doi</a></li>
+    <li>M. Šarbort and T. Tyc, “Spherical media and geodesic lenses in geometrical optics,” <em>J. Opt.</em> <strong>14</strong>, 075705 (2012). <a href="https://doi.org/10.1088/2040-8978/14/7/075705">doi</a></li>
     <li>H. Chen, “The Morse lens,” arXiv:2002.03884 (2020). <a href="https://arxiv.org/abs/2002.03884">arXiv</a></li>
     <li>W. H. Press et al., <em>Numerical Recipes</em>, 3rd ed. Cambridge University Press, 2007. (RK4 and step-size control.)</li>
   </ol>
 </article>
 
 <div class="note-end">
-  <span>Note 002 · Working note, not a peer-reviewed paper</span>
+  <span>Note 002 · Working note, not a peer-reviewed paper · <a href="#revisions">revised 10 Nov 2026</a></span>
   <span>Corrections: <a href="mailto:helloworld.3a@gmail.com">email</a></span>
 </div>
 

@@ -213,13 +213,19 @@
           <figure class="lab reveal">
             <div class="lab__bar">
               <span class="lab__id">Fig. R2</span>
-              <span class="lab__title">Luneburg lens ≡ unit sphere</span>
-              <span>Drag to rotate</span>
+              <span class="lab__title">Equivalent surface / s(ρ) = B (ρ + arcsin ρ)</span>
+              <span data-surface-readout>B = 0.50 · Luneburg · apex 90°</span>
             </div>
             <div class="lab__stage lab__stage--tall">
-              <canvas data-surface role="img" aria-label="A rotating wireframe sphere with orange great-circle geodesics drawn on its surface."></canvas>
+              <canvas data-surface role="img" aria-label="A wireframe dome, the equivalent geodesic surface of the lens, standing on a plane. Parallel rays in the plane climb the dome as orange geodesics. For the Luneburg lens they all leave through one point on the rim; as the slider moves towards the Eaton lens the apex sharpens into a cone and the geodesics wind around it and return."></canvas>
             </div>
-            <figcaption class="lab__foot"><b>Fig. R2</b> — The Luneburg lens is exactly a sphere. The orange curves are great circles; under the metric equivalence they are the rays of the lens. Drag to rotate the surface.</figcaption>
+            <div class="lab__controls">
+              <label for="surface-b">Morse parameter B</label>
+              <input class="range" id="surface-b" type="range" min="0.5" max="1" step="0.005" value="0.5" data-surface-range>
+              <span class="lab__spacer"></span>
+              <button class="btn-lab" type="button" data-surface-reset>Reset</button>
+            </div>
+            <figcaption class="lab__foot"><b>Fig. R2</b> — The equivalent surface of the Morse family, drawn from its closed form. At $B=\tfrac12$ it is Rinehart's surface, the geodesic twin of the Luneburg lens: a parallel bundle in the plane becomes geodesics that meet at one point of the rim. Raise $B$ and the apex sharpens into a cone; at $B=1$ (Eaton) every geodesic winds once around it and returns the way it came. Drag to rotate.</figcaption>
           </figure>
 
           <div class="research-section__body">
@@ -231,13 +237,15 @@
               <p class="math-display">\[ dz^{2}=ds^{2}-d\rho^{2}. \]</p>
               <p>The first relation is the projected radius; the second identifies optical arc length with surface arc length; the third fixes the height. Differentiating $\rho=nr$ gives the master identity $s'(\rho)\,(n+rn')=n$, and the surface follows by quadrature:</p>
               <p class="math-display">\[ z(\rho)=\int_{0}^{\rho}\sqrt{s'(\xi)^{2}-1}\;d\xi. \]</p>
-              <p>The Luneburg profile makes the geometry unusually explicit. With $n^{2}=2-r^{2}$,</p>
-              <p class="math-display">\[ \rho^{2}=r^{2}(2-r^{2})=1-(1-r^{2})^{2}, \]</p>
-              <p>so writing $z=1-r^{2}$ gives $\rho^{2}+z^{2}=1$. The Luneburg lens is a unit sphere. Every parallel ray focuses on the opposite pole, and every geodesic is a great circle.</p>
+              <p>The Luneburg profile makes the geometry unusually explicit. With $n^{2}=2-r^{2}$ the projected radius is $\rho^{2}=1-(1-r^{2})^{2}$, and the master identity gives</p>
+              <p class="math-display">\[ s'(\rho)=\frac12\left(1+\frac{1}{\sqrt{1-\rho^{2}}}\right),\qquad s(\rho)=\tfrac12\left(\rho+\arcsin\rho\right). \]</p>
+              <p>This is Rinehart's surface: the mean of a flat disc, $s=\rho$, and a hemisphere, $s=\arcsin\rho$. It is not a sphere. The optical metric of the Luneburg lens has Gaussian curvature $K=4/(2-r^{2})^{3}$, which is not constant; the lens whose equivalent surface <em>is</em> a sphere is Maxwell's fish-eye, $n=2/(1+r^{2})$, with $K=1$ and great circles for rays. On Rinehart's surface the statement is different and just as sharp: the geodesics that continue a parallel bundle of rays all leave through one point of the rim.</p>
               <p>The Morse family generalises this. The profile</p>
               <p class="math-display">\[ n^{2}(r)=2r^{-2+1/B}-r^{-2+2/B},\qquad 0&lt;r\le 1, \]</p>
-              <p>reduces to Luneburg at $B=\tfrac12$ and to Eaton at $B=1$. My thesis proves that the conformal Morse lens is the $(A=B,\,C=1)$ slice of Cornbleet's general family, with $a=-1/B$, and constructs the equivalent surfaces for the intermediate profiles. The numerical ray traces agree with the surface geodesics to the discretisation error of the integrator.</p>
-              <p>There is a closure criterion hidden in the quadrature: a real surface exists only while $s'(\rho)\ge1$, and a closed lens requires the height to remain finite at the rim. The Eaton limit fails at the origin — the index diverges, the surface opens, and the retroreflector is not a closed lens. That is a geometric obstruction, not a fabrication problem.</p>
+              <p>reduces to Luneburg at $B=\tfrac12$ and to Eaton at $B=1$. My thesis proves that the conformal Morse lens is the $(A=B,\,C=1)$ slice of Cornbleet's general family, with $a=-1/B$, and constructs the equivalent surfaces for the intermediate profiles. The numerical ray traces agree with the surface geodesics to the discretisation error of the integrator. For the whole family the quadrature closes:</p>
+              <p class="math-display">\[ s(\rho)=B\left(\rho+\arcsin\rho\right). \]</p>
+              <p>There is an existence condition hidden in the quadrature: a real surface needs $s'(\rho)\ge1$. Here $s'(0)=2B$, so the family is realisable exactly for $B\ge\tfrac12$, and the Luneburg lens is the borderline case with a smooth apex. For $B&gt;\tfrac12$ the index diverges at the origin, but only as $r^{-1+1/(2B)}$: the optical path to the centre stays finite, the surface stays closed, and what the divergence leaves behind is a conical apex of half-angle $\arcsin(1/2B)$ — $30^{\circ}$ for the Eaton lens. A geodesic with impact parameter $b$ sweeps an azimuth $B\,(\pi+2\arccos b)$ between entering and leaving the rim, which is how one family of surfaces runs from a focusing lens to a retroreflector. The obstruction at the Eaton end is a cone point, not an opening. It is still geometry, not fabrication.</p>
+              <p class="correction"><b>Corrected 10 Nov 2026.</b> An earlier version of this page said that the Luneburg lens is equivalent to a unit sphere and that the Eaton surface fails to close. Both statements were wrong; the paragraphs and Fig. R2 above replace them. The check is in the <a href="/notes/why-a-lens-is-a-surface/#revisions">revision note</a>.</p>
               <p><a href="/papers/morse-lens/">Read the full thesis <svg class="arr" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8h10.5M9 3.5 13.5 8 9 12.5"/></svg></a></p>
             </div>
             <aside class="research-section__notes">
@@ -311,8 +319,8 @@
           <div class="research-section__body">
             <div class="prose">
               <ol>
-                <li><strong>Which profiles admit a closed, manufacturable surface?</strong> The closure criterion is a first filter, not a design rule. I want a classification that includes tolerance and finite aperture.</li>
-                <li><strong>Can a conformal design survive fabrication?</strong> A sphere is exact; a machined sphere is not. The sensitivity of the caustic to surface error is a well-posed numerical question.</li>
+                <li><strong>Which profiles admit a real, manufacturable surface?</strong> The condition $s'\ge1$ is a first filter, not a design rule: a cone point is a legal surface and a hard thing to machine. I want a classification that includes tolerance and finite aperture.</li>
+                <li><strong>Can a conformal design survive fabrication?</strong> A computed profile is exact; a machined one is not. The sensitivity of the caustic to surface error is a well-posed numerical question.</li>
                 <li><strong>What does a which-path measurement do to the field?</strong> The textbook story is about information. A detector is also a physical object with a response time and a back-action, and I would like to understand the bridge.</li>
               </ol>
               <p>If any of these is close to your work, write to me. I am especially interested in collaborations that put a computed surface into an optical test.</p>
@@ -342,9 +350,11 @@
               <li>J. B. Pendry, D. Schurig, and D. R. Smith, “Controlling electromagnetic fields,” <em>Science</em> <strong>312</strong>, 1780–1782 (2006). <a href="https://doi.org/10.1126/science.1125907">doi</a></li>
               <li>U. Leonhardt, “Optical conformal mapping,” <em>Science</em> <strong>312</strong>, 1777–1780 (2006). <a href="https://doi.org/10.1126/science.1126493">doi</a></li>
               <li>D. Schurig et al., “Metamaterial electromagnetic cloak at microwave frequencies,” <em>Science</em> <strong>314</strong>, 977–980 (2006). <a href="https://doi.org/10.1126/science.1133628">doi</a></li>
-              <li>M. Šarbort and T. Tyc, “Spherical media and geodesic lenses in geometrical optics,” <em>J. Opt.</em> <strong>14</strong>, 075103 (2012). <a href="https://doi.org/10.1088/2040-8978/14/7/075103">doi</a></li>
+              <li>R. F. Rinehart, “A solution of the problem of rapid scanning for radar antennae,” <em>J. Appl. Phys.</em> <strong>19</strong>, 860–862 (1948). <a href="https://doi.org/10.1063/1.1698221">doi</a></li>
+              <li>M. Šarbort and T. Tyc, “Spherical media and geodesic lenses in geometrical optics,” <em>J. Opt.</em> <strong>14</strong>, 075705 (2012). <a href="https://doi.org/10.1088/2040-8978/14/7/075705">doi</a></li>
               <li>H. Chen, “The Morse lens,” arXiv:2002.03884 (2020). <a href="https://arxiv.org/abs/2002.03884">arXiv</a></li>
               <li>M. Born and E. Wolf, <em>Principles of Optics</em>, 7th ed. Cambridge University Press, 1999.</li>
+              <li>B.-G. Englert, “Fringe visibility and which-way information: an inequality,” <em>Phys. Rev. Lett.</em> <strong>77</strong>, 2154–2157 (1996). <a href="https://doi.org/10.1103/PhysRevLett.77.2154">doi</a></li>
               <li>M. O. Scully and K. Drühl, “Quantum eraser: A proposed photon correlation experiment concerning observation and ‘delayed choice’ in quantum mechanics,” <em>Phys. Rev. A</em> <strong>25</strong>, 2208 (1982). <a href="https://doi.org/10.1103/PhysRevA.25.2208">doi</a></li>
             </ol>
           </div>

@@ -509,14 +509,37 @@
   }
 
   /* ======================================================================
-     3. geodesic surface — the Luneburg sphere
+     3. geodesic surface — the equivalent surface of the Morse family
+
+     For n²(r) = 2 r^(-2+1/B) − r^(-2+2/B) the metric equivalence
+     ρ = n r, ds = n dr integrates in closed form:
+
+         s(ρ) = B (ρ + arcsin ρ),      0 ≤ ρ ≤ 1.
+
+     B = 1/2 is the Luneburg lens (Rinehart's surface, smooth apex);
+     B = 1 is the Eaton lens (conical apex of half-angle 30°).
+     With ρ = sin θ the height below the apex is
+
+         z(θ) = ∫₀^θ sqrt( B²(1 + cos t)² − cos² t ) dt,
+
+     and Clairaut's relation gives every geodesic in closed form too.
      ====================================================================== */
   function initSurface() {
     const canvas = document.querySelector("[data-surface]");
     if (!canvas) return;
+    const range = document.querySelector("[data-surface-range]");
+    const out = document.querySelector("[data-surface-readout]");
+    const resetBtn = document.querySelector("[data-surface-reset]");
+    const HALF_PI = Math.PI / 2;
+    const NT = 72;
+    const zt = new Float64Array(NT + 1);
+    const IMPACT = [-0.86, -0.62, -0.38, -0.14, 0.14, 0.38, 0.62, 0.86];
+    const REACH = 1.72;
+    let B = 0.5;
+    let H = 0;
     let view = null;
-    let yaw = -0.55;
-    let pitch = 0.38;
+    let yaw = -0.62;
+    let pitch = 0.5;
     let dragging = false;
     let lastX = 0;
     let lastY = 0;
@@ -525,123 +548,180 @@
     let running = false;
     let last = 0;
 
-    const project = (lat, lon, cx, cy, R) => {
-      const x = Math.cos(lat) * Math.cos(lon);
-      const y = Math.cos(lat) * Math.sin(lon);
-      const z = Math.sin(lat);
-      const cyaw = Math.cos(yaw);
-      const syaw = Math.sin(yaw);
-      let X = cyaw * x + syaw * z;
-      let Z = -syaw * x + cyaw * z;
-      const cp = Math.cos(pitch);
-      const sp = Math.sin(pitch);
-      const Y = cp * y - sp * Z;
-      Z = sp * y + cp * Z;
-      return [cx + X * R, cy - Z * R, Y];
+    const slope = (t) => {
+      const c = Math.cos(t);
+      return Math.sqrt(Math.max(0, B * B * (1 + c) * (1 + c) - c * c));
+    };
+
+    function profile() {
+      const dt = HALF_PI / NT;
+      zt[0] = 0;
+      for (let i = 1; i <= NT; i++) {
+        const a = (i - 1) * dt;
+        zt[i] = zt[i - 1] + (dt / 6) * (slope(a) + 4 * slope(a + dt / 2) + slope(a + dt));
+      }
+      H = zt[NT];
+    }
+
+    // height above the rim plane at projected radius rho
+    const height = (rho) => {
+      const u = (Math.asin(clamp(rho, 0, 1)) / HALF_PI) * NT;
+      const i = Math.min(NT - 1, Math.floor(u));
+      return H - (zt[i] + (zt[i + 1] - zt[i]) * (u - i));
+    };
+
+    // azimuth swept, per unit B, from the turning point rho = b out to rho
+    const sweep = (rho, b) => {
+      const u = rho * rho;
+      const b2 = b * b;
+      const q = clamp(((1 + b2) * u - 2 * b2) / (u * (1 - b2)), -1, 1);
+      return Math.acos(clamp(b / rho, -1, 1)) + 0.5 * (Math.asin(q) + HALF_PI);
     };
 
     function draw() {
       if (!view) return;
       const { ctx, w, h } = view;
-      const cx = w * 0.5;
-      const cy = h * 0.5;
-      const R = Math.min(w * 0.35, h * 0.42);
+      const cyaw = Math.cos(yaw);
+      const syaw = Math.sin(yaw);
+      const cp = Math.cos(pitch);
+      const sp = Math.sin(pitch);
+      const S = Math.min(w * 0.27, (h * 0.8) / (H * 0.88 + 1.5));
+      const ox = w * 0.5;
+      const oy = h * 0.5 + ((H * cp - 1.15 * sp) * S) / 2;
       ctx.clearRect(0, 0, w, h);
 
-      const glow = ctx.createRadialGradient(cx, cy, R * 0.1, cx, cy, R * 1.5);
+      const glow = ctx.createRadialGradient(ox, oy - H * cp * S * 0.4, S * 0.1, ox, oy, S * 2.4);
       glow.addColorStop(0, "rgba(30, 69, 95, 0.32)");
       glow.addColorStop(0.6, "rgba(12, 27, 38, 0.16)");
       glow.addColorStop(1, "rgba(8, 9, 11, 0)");
       ctx.fillStyle = glow;
       ctx.fillRect(0, 0, w, h);
 
+      const to2d = (x, y, z) => {
+        const x1 = cyaw * x - syaw * y;
+        const y1 = syaw * x + cyaw * y;
+        return [ox + x1 * S, oy - (y1 * sp + z * cp) * S];
+      };
+      // a point on the surface, with a flag for whether it faces the viewer
+      const onSurface = (rho, phi) => {
+        const t = Math.asin(clamp(rho, 0, 1));
+        const p = to2d(rho * Math.cos(phi), rho * Math.sin(phi), height(rho));
+        p[2] = Math.cos(t) * sp - slope(t) * Math.sin(phi + yaw) * cp >= 0;
+        return p;
+      };
+
       const back = [];
       const front = [];
-
       const addLine = (pts, color, width, frontA, backA) => {
         let run = [];
-        let frontFlag = null;
+        let flag = null;
         const flush = () => {
-          if (run.length < 2) return;
-          const seg = { pts: run.slice(), front: frontFlag, color, width, frontA, backA };
-          (frontFlag ? front : back).push(seg);
-          run = [];
+          if (run.length > 1) (flag ? front : back).push({ pts: run, front: flag, color, width, frontA, backA });
         };
         for (const p of pts) {
-          const f = p[2] >= 0;
-          if (frontFlag === null) frontFlag = f;
-          if (f !== frontFlag) {
+          if (flag === null) flag = p[2];
+          if (p[2] !== flag) {
+            run.push(p);
             flush();
-            frontFlag = f;
+            run = [];
+            flag = p[2];
           }
           run.push(p);
         }
         flush();
       };
-
-      // meridians
-      for (let k = 0; k < 18; k++) {
-        const lon = (k / 18) * TAU;
-        const pts = [];
-        for (let i = 0; i <= 64; i++) pts.push(project(-Math.PI / 2 + (Math.PI * i) / 64, lon, cx, cy, R));
-        addLine(pts, "191, 224, 244", 0.7, 0.20, 0.055);
-      }
-      // parallels
-      for (let k = 1; k < 10; k++) {
-        const lat = -Math.PI / 2 + (Math.PI * k) / 10;
-        const pts = [];
-        for (let i = 0; i <= 96; i++) pts.push(project(lat, (i / 96) * TAU, cx, cy, R));
-        addLine(pts, "191, 224, 244", k === 5 ? 1 : 0.7, k === 5 ? 0.34 : 0.16, 0.045);
-      }
-      // geodesics as great circles
-      for (let k = 0; k < 5; k++) {
-        const ang = (Math.PI * k) / 5 + 0.35;
-        const pts = [];
-        for (let i = 0; i <= 120; i++) {
-          const t = (i / 120) * TAU;
-          const x = Math.cos(t);
-          const y = Math.sin(t) * Math.cos(ang);
-          const z = Math.sin(t) * Math.sin(ang);
-          const cyaw = Math.cos(yaw);
-          const syaw = Math.sin(yaw);
-          let X = cyaw * x + syaw * z;
-          let Z = -syaw * x + cyaw * z;
-          const cp = Math.cos(pitch);
-          const sp = Math.sin(pitch);
-          const Y = cp * y - sp * Z;
-          Z = sp * y + cp * Z;
-          pts.push([cx + X * R, cy - Z * R, Y]);
-        }
-        addLine(pts, "255, 106, 61", 1.15, 0.78, 0.18);
-      }
-
-      // rim
-      const rim = [];
-      for (let i = 0; i <= 160; i++) rim.push(project(0, (i / 160) * TAU, cx, cy, R));
-      addLine(rim, "191, 224, 244", 1.2, 0.5, 0.5);
-
-      const paint = (segs) => {
-        for (const s of segs) {
-          ctx.beginPath();
-          s.pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])));
-          ctx.strokeStyle = `rgba(${s.color}, ${s.front ? s.frontA : s.backA})`;
-          ctx.lineWidth = s.width;
-          ctx.stroke();
-        }
+      const stroke = (pts, color, width, alpha) => {
+        ctx.beginPath();
+        pts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])));
+        ctx.strokeStyle = `rgba(${color}, ${alpha})`;
+        ctx.lineWidth = width;
+        ctx.stroke();
       };
-      paint(back);
-      paint(front);
 
-      // pole
-      const pole = project(Math.PI / 2, 0, cx, cy, R);
-      ctx.beginPath();
-      ctx.arc(pole[0], pole[1], 2.4, 0, TAU);
-      ctx.fillStyle = "rgba(255, 106, 61, 0.95)";
-      ctx.fill();
-      ctx.beginPath();
-      ctx.arc(pole[0], pole[1], 8, 0, TAU);
-      ctx.strokeStyle = "rgba(255, 106, 61, 0.22)";
-      ctx.stroke();
+      // the plane the lens sits in
+      for (const r of [1.3, REACH]) {
+        const ring = [];
+        for (let i = 0; i <= 120; i++) ring.push(to2d(r * Math.cos((i / 120) * TAU), r * Math.sin((i / 120) * TAU), 0));
+        stroke(ring, "191, 224, 244", 0.6, r > 1.5 ? 0.1 : 0.06);
+      }
+
+      // meridians and parallels of the surface
+      for (let k = 0; k < 18; k++) {
+        const phi = (k / 18) * TAU;
+        const pts = [];
+        for (let i = 0; i <= 48; i++) pts.push(onSurface(Math.sin((i / 48) * HALF_PI), phi));
+        addLine(pts, "191, 224, 244", 0.7, 0.2, 0.055);
+      }
+      for (let k = 1; k < 6; k++) {
+        const rho = Math.sin((k / 6) * HALF_PI);
+        const pts = [];
+        for (let i = 0; i <= 96; i++) pts.push(onSurface(rho, (i / 96) * TAU));
+        addLine(pts, "191, 224, 244", 0.7, 0.16, 0.045);
+      }
+      const rim = [];
+      for (let i = 0; i <= 160; i++) rim.push(onSurface(1, (i / 160) * TAU));
+      addLine(rim, "191, 224, 244", 1.2, 0.5, 0.3);
+
+      // geodesics: parallel rays in the plane, lifted onto the surface
+      const exits = [];
+      for (const b of IMPACT) {
+        const ab = Math.abs(b);
+        const sgn = b > 0 ? 1 : -1;
+        const phiIn = Math.PI - Math.asin(b);
+        const full = sweep(1, ab);
+        const pts = [];
+        for (let i = 40; i >= 0; i--) {
+          const rho = Math.sqrt(ab * ab + (1 - ab * ab) * Math.pow(Math.sin((i / 40) * HALF_PI), 2));
+          pts.push(onSurface(rho, phiIn - sgn * B * (full - sweep(rho, ab))));
+        }
+        for (let i = 1; i <= 40; i++) {
+          const rho = Math.sqrt(ab * ab + (1 - ab * ab) * Math.pow(Math.sin((i / 40) * HALF_PI), 2));
+          pts.push(onSurface(rho, phiIn - sgn * B * (full + sweep(rho, ab))));
+        }
+        addLine(pts, "255, 106, 61", 1.2, 0.85, 0.24);
+
+        const phiOut = phiIn - sgn * B * 2 * full;
+        const heading = 2 * (phiIn - sgn * B * full) - Math.PI;
+        const ex = Math.cos(phiOut);
+        const ey = Math.sin(phiOut);
+        stroke([to2d(-REACH, b, 0), to2d(-Math.sqrt(1 - b * b), b, 0)], "255, 106, 61", 1, 0.42);
+        stroke([to2d(ex, ey, 0), to2d(ex + 0.6 * Math.cos(heading), ey + 0.6 * Math.sin(heading), 0)], "255, 106, 61", 1, 0.3);
+        exits.push(to2d(ex, ey, 0));
+      }
+
+      for (const s of back) stroke(s.pts, s.color, s.width, s.backA);
+      for (const s of front) stroke(s.pts, s.color, s.width, s.frontA);
+
+      // where each geodesic leaves the rim: one point for Luneburg, a spread otherwise
+      for (const p of exits) {
+        ctx.beginPath();
+        ctx.arc(p[0], p[1], 2.2, 0, TAU);
+        ctx.fillStyle = "rgba(255, 106, 61, 0.95)";
+        ctx.fill();
+      }
+      if (B < 0.503) {
+        ctx.beginPath();
+        ctx.arc(exits[0][0], exits[0][1], 8, 0, TAU);
+        ctx.strokeStyle = "rgba(255, 106, 61, 0.28)";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    }
+
+    function label() {
+      if (range) range.style.setProperty("--p", `${((B - 0.5) / 0.5) * 100}%`);
+      if (!out) return;
+      const name = B < 0.503 ? "Luneburg" : B > 0.997 ? "Eaton" : "Morse";
+      const apex = Math.round((Math.asin(Math.min(1, 1 / (2 * B))) * 180) / Math.PI);
+      out.textContent = `B = ${B.toFixed(2)} · ${name} · apex ${apex}°`;
+    }
+
+    function setB(v) {
+      B = clamp(v, 0.5, 1);
+      profile();
+      label();
+      lastInteract = performance.now();
+      if (reduced || !running) draw();
     }
 
     function frame(t) {
@@ -662,6 +742,8 @@
       draw();
     }
 
+    profile();
+    label();
     observe(canvas, resize);
     visibility(canvas, (v) => {
       visible = v;
@@ -670,6 +752,16 @@
         window.requestAnimationFrame(frame);
       }
     });
+
+    if (range) range.addEventListener("input", () => setB(parseFloat(range.value)));
+    if (resetBtn) {
+      resetBtn.addEventListener("click", () => {
+        if (range) range.value = "0.5";
+        yaw = -0.62;
+        pitch = 0.5;
+        setB(0.5);
+      });
+    }
 
     canvas.addEventListener("pointerdown", (e) => {
       dragging = true;
@@ -681,7 +773,7 @@
     canvas.addEventListener("pointermove", (e) => {
       if (!dragging) return;
       yaw += (e.clientX - lastX) * 0.008;
-      pitch = clamp(pitch - (e.clientY - lastY) * 0.005, -1.05, 1.05);
+      pitch = clamp(pitch + (e.clientY - lastY) * 0.005, 0.1, 1.25);
       lastX = e.clientX;
       lastY = e.clientY;
       lastInteract = performance.now();

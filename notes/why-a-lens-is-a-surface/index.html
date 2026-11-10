@@ -52,6 +52,7 @@
   "@type": "BlogPosting",
   "headline": "Why a lens is a surface",
   "datePublished": "2026-11-02",
+  "dateModified": "2026-11-10",
   "author": {
     "@type": "Person",
     "name": "Zheng Xiangsheng"
@@ -108,6 +109,7 @@
     <div class="note-meta">
       <span class="author">Zheng Xiangsheng</span>
       <span>02 Nov 2026</span>
+      <span>Revised 10 Nov 2026</span>
       <span>9 min read</span>
       <span>Working note</span>
     </div>
@@ -163,24 +165,38 @@
 
   <p class="math-display">\[ z(\rho)=\int_{0}^{\rho}\sqrt{s'(\xi)^{2}-1}\;d\xi. \]</p>
 
-  <p>A real surface requires $s'(\rho)\ge1$. A closed lens requires more: the integral must remain finite at the rim, and the tangent must turn vertical there. Those are geometric conditions, not fabrication details — although they become fabrication details very quickly.</p>
+  <p>A real surface requires $s'(\rho)\ge1$. Where $s'=1$ the sheet is locally flat; where $s'\to\infty$ its tangent turns vertical, which is what happens at the rim of every lens below. Those are geometric conditions, not fabrication details — although they become fabrication details very quickly.</p>
 
-  <h2>The Luneburg lens is a sphere</h2>
+  <h2>The Luneburg lens is Rinehart's surface</h2>
 
   <p>The Luneburg profile is the cleanest example. It is</p>
 
   <p class="math-display">\[ n^{2}(r)=2-r^{2},\qquad 0\le r\le1. \]</p>
 
-  <p>Then $\rho^{2}=r^{2}(2-r^{2})=1-(1-r^{2})^{2}$. With $z=1-r^{2}$, this is exactly</p>
+  <p>The projected radius is $\rho=r\sqrt{2-r^{2}}$, so $\rho^{2}=1-(1-r^{2})^{2}$ and $1-r^{2}=\sqrt{1-\rho^{2}}$. The master identity then gives</p>
 
-  <p class="math-display">\[ \rho^{2}+z^{2}=1. \]</p>
+  <p class="math-display">\[ s'(\rho)=\frac{2-r^{2}}{2\,(1-r^{2})}=\frac12\left(1+\frac{1}{\sqrt{1-\rho^{2}}}\right), \]</p>
 
-  <p>The equivalent surface is a unit sphere. Every parallel ray focuses at the opposite pole; every geodesic is a great circle. What looks like a statement about a carefully graded refractive index is, after the change of variables, a statement about the equator of a sphere.</p>
+  <p>which integrates to</p>
+
+  <p class="math-display">\[ s(\rho)=\tfrac12\left(\rho+\arcsin\rho\right). \]</p>
+
+  <p>This is the surface Rinehart found in 1948 as a waveguide lens for scanning radar. Its meridian is the arithmetic mean of a flat disc, $s=\rho$, and a hemisphere, $s=\arcsin\rho$: a dome that is flat at the apex, meets the plane with a vertical tangent, and stands $0.63$ lens radii high. A parallel bundle of rays arriving in the plane climbs the dome as a family of geodesics, and every one of them leaves through the same point on the far side of the rim. What looks like a statement about a carefully graded refractive index is, after the change of variables, a statement about one curved sheet.</p>
 
   <figure>
-    <img src="/assets/figures/fig-surface-light.svg" alt="A sphere drawn as a wireframe, with several great circles highlighted in orange." width="900" height="680">
-    <figcaption><b>Fig. 2</b> — The Luneburg lens as a unit sphere. The orange great circles are geodesics; under the equivalence they are rays of the lens. The view is a wireframe, so the back of the sphere is visible too.</figcaption>
+    <img src="/assets/figures/fig-surface-light.svg" alt="A wireframe dome standing on a plane. Parallel rays in the plane climb the dome as orange geodesics and converge at a single point on the far side of its rim." width="900" height="680">
+    <figcaption><b>Fig. 2</b> — Rinehart's surface, the equivalent of the Luneburg lens, computed from $s(\rho)=\tfrac12(\rho+\arcsin\rho)$. The orange curves are geodesics that continue a parallel bundle of rays in the plane; they meet at one point of the rim. The view is a wireframe, so the back of the dome is visible too.</figcaption>
   </figure>
+
+  <h2>Where the sphere belongs</h2>
+
+  <p>It is tempting to stop one line early. Writing $z=1-r^{2}$ turns $\rho^{2}=1-(1-r^{2})^{2}$ into $\rho^{2}+z^{2}=1$, which looks like a unit sphere, and the first version of this note said so. It is a coincidence in $\rho(r)$ alone. That choice of $z$ gives $d\rho^{2}+dz^{2}=4\,dr^{2}/(2-r^{2})$, not $n^{2}dr^{2}$: the radii match and the arc lengths do not. An invariant settles it. The optical metric $n^{2}\left(dr^{2}+r^{2}d\varphi^{2}\right)$ has Gaussian curvature</p>
+
+  <p class="math-display">\[ K=-\frac{1}{n^{2}}\,\nabla^{2}\ln n, \]</p>
+
+  <p>which for the Luneburg lens is $K=4/(2-r^{2})^{3}$. It rises from $\tfrac12$ at the centre to $4$ at the rim; a sphere has constant curvature. The profile that does have $K=1$ is Maxwell's fish-eye, $n=2/(1+r^{2})$. Its equivalent surface is the unit sphere, the map between them is stereographic projection, its rays are great circles, and every point is imaged at its antipode.<sup class="fn-ref">2</sup></p>
+
+  <aside class="sidenote"><b>2</b> Both correspondences are classical. Šarbort and Tyc give the general dictionary between spherically symmetric media and geodesic lenses, including these two.</aside>
 
   <h2>What the Morse family adds</h2>
 
@@ -188,19 +204,21 @@
 
   <p class="math-display">\[ n^{2}(r)=2r^{-2+1/B}-r^{-2+2/B},\qquad 0&lt;r\le1, \]</p>
 
-  <p>reduces to Luneburg at $B=\tfrac12$ and to Eaton at $B=1$. Intermediate values interpolate between a focusing lens and a retroreflector. In my BSc thesis I showed that the conformal Morse lens is the $(A=B,\,C=1)$ slice of Cornbleet's general family, with the parameter correspondence $a=-1/B$, and constructed the equivalent surfaces for the intermediate profiles.</p>
+  <p>reduces to Luneburg at $B=\tfrac12$ and to Eaton at $B=1$. Intermediate values interpolate between a focusing lens and a retroreflector. In my BSc thesis I showed that the conformal Morse lens is the $(A=B,\,C=1)$ slice of Cornbleet's general family, with the parameter correspondence $a=-1/B$, and constructed the equivalent surfaces for the intermediate profiles. For the whole family the quadrature closes in the same way:</p>
 
-  <p>The closure criterion matters most at the Eaton end. There $n\sim r^{-1/2}$ as $r\to0$, so the optical length to the origin diverges, the reconstructed surface opens, and the lens cannot close.<sup class="fn-ref">2</sup> That is a geometric obstruction, not a problem with the machining. The Morse family is interesting precisely because it lets us watch a closed lens turn into an open one.</p>
+  <p class="math-display">\[ s(\rho)=B\left(\rho+\arcsin\rho\right). \]</p>
 
-  <aside class="sidenote"><b>2</b> The Eaton index behaves as $n\sim r^{-1/2}$ near the origin. The surface height integral diverges there; the profile opens into a vertical tangent instead of closing.</aside>
+  <p>The existence condition $s'\ge1$ does the sorting. At the apex $s'(0)=2B$, so a real surface exists exactly for $B\ge\tfrac12$, and the Luneburg lens is the borderline case with a smooth top. For $B&gt;\tfrac12$ the index diverges at the origin, but gently: $n\sim r^{-1+1/(2B)}$, which is $r^{-1/2}$ for Eaton. The optical path to the centre is therefore finite ($1+\pi/2$ lens radii for Eaton) and the surface stays closed. What the divergence leaves behind is a cone: the apex has half-angle $\arcsin(1/2B)$, which is $30^{\circ}$ at the Eaton end. A geodesic that passes a cone point is turned, and that turning is the retroreflection.<sup class="fn-ref">3</sup> The Morse family is interesting precisely because it lets us watch a smooth dome sharpen into a cone.</p>
+
+  <aside class="sidenote"><b>3</b> A geodesic with impact parameter $b$ sweeps an azimuth $B\,(\pi+2\arccos b)$ between entering and leaving the rim. At $B=\tfrac12$ that brings every parallel ray to one rim point; at $B=1$ it sends each ray back along its own direction.</aside>
 
   <h2>What the equivalence does not do</h2>
 
   <p>It does not solve the wave problem. The metric equivalence is an identity between ray equations; it says nothing about polarisation, Fresnel reflection, or the diffraction limit of the resulting aperture. A surface that reproduces the rays of a lens can still scatter differently at the rim.</p>
 
-  <p>It also does not make the lens easy to build. A sphere is forgiving; a Morse surface is not. The interesting experimental question is not “does a surface exist?” but “how much figure error can it tolerate before the caustic stops being useful?”<sup class="fn-ref">3</sup></p>
+  <p>It also does not make the lens easy to build. A smooth dome is forgiving; a cone point is not. The interesting experimental question is not “does a surface exist?” but “how much figure error can it tolerate before the caustic stops being useful?”<sup class="fn-ref">4</sup></p>
 
-  <aside class="sidenote"><b>3</b> This is the question I would most like to answer numerically next: a sensitivity map from surface error to caustic blur, for the Luneburg and intermediate Morse profiles.</aside>
+  <aside class="sidenote"><b>4</b> This is the question I would most like to answer numerically next: a sensitivity map from surface error to caustic blur, for the Luneburg and intermediate Morse profiles.</aside>
 
   <h2>Why I keep returning to it</h2>
 
@@ -210,10 +228,17 @@
 
   <p>The full derivation, including the parameter correspondence and the ray-tracing checks, is in <a href="/papers/morse-lens/">the thesis</a>.</p>
 
+  <h2 id="revisions">Revision history</h2>
+  <ul class="revisions">
+    <li><b>10 Nov 2026</b> — Corrected the central example. The first version claimed that the Luneburg lens is equivalent to a unit sphere, and that the Eaton surface cannot close because the optical path to the origin diverges. Both claims were wrong. The Luneburg surface is Rinehart's, $s=\tfrac12(\rho+\arcsin\rho)$; the sphere belongs to Maxwell's fish-eye; the Eaton path is finite and its surface is closed, with a conical apex. Fig. 2 was recomputed, and the Šarbort–Tyc reference now carries the right article number.</li>
+    <li><b>02 Nov 2026</b> — First published.</li>
+  </ul>
+
   <h2>References</h2>
   <ol class="reading-list">
     <li>R. K. Luneburg, <em>Mathematical Theory of Optics</em>. Brown University Press, 1944.</li>
-    <li>M. Šarbort and T. Tyc, “Spherical media and geodesic lenses in geometrical optics,” <em>J. Opt.</em> <strong>14</strong>, 075103 (2012). <a href="https://doi.org/10.1088/2040-8978/14/7/075103">doi</a></li>
+    <li>R. F. Rinehart, “A solution of the problem of rapid scanning for radar antennae,” <em>J. Appl. Phys.</em> <strong>19</strong>, 860–862 (1948). <a href="https://doi.org/10.1063/1.1698221">doi</a></li>
+    <li>M. Šarbort and T. Tyc, “Spherical media and geodesic lenses in geometrical optics,” <em>J. Opt.</em> <strong>14</strong>, 075705 (2012). <a href="https://doi.org/10.1088/2040-8978/14/7/075705">doi</a></li>
     <li>U. Leonhardt, “Optical conformal mapping,” <em>Science</em> <strong>312</strong>, 1777–1780 (2006). <a href="https://doi.org/10.1126/science.1126493">doi</a></li>
     <li>H. Chen, “The Morse lens,” arXiv:2002.03884 (2020). <a href="https://arxiv.org/abs/2002.03884">arXiv</a></li>
     <li>S. Cornbleet, <em>Microwave and Geometrical Optics</em>. Academic Press, 1994.</li>
@@ -221,7 +246,7 @@
 </article>
 
 <div class="note-end">
-  <span>Note 001 · Working note, not a peer-reviewed paper</span>
+  <span>Note 001 · Working note, not a peer-reviewed paper · <a href="#revisions">revised 10 Nov 2026</a></span>
   <span>Corrections: <a href="mailto:helloworld.3a@gmail.com">email</a></span>
 </div>
 
