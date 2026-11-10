@@ -153,6 +153,22 @@
   doc.addEventListener("DOMContentLoaded", renderMath);
   window.addEventListener("load", renderMath);
 
+  /* ------------------------------------------ keyboard access to side-scroll */
+  // A listing, figure or table that scrolls sideways must be reachable from the
+  // keyboard, or its right-hand half is unreadable without a pointer.
+  const markScrollable = () => {
+    $$("pre, .figure-scroll, .math-display, .prose table, .paper-body table").forEach((el) => {
+      if (el.scrollWidth <= el.clientWidth + 1 || el.hasAttribute("tabindex")) return;
+      el.setAttribute("tabindex", "0");
+      if (el.tagName === "TABLE") return;
+      el.setAttribute("role", "group");
+      const kind = el.tagName === "PRE" ? "Code listing" : el.classList.contains("math-display") ? "Equation" : "Figure";
+      el.setAttribute("aria-label", `${kind}, scrolls sideways`);
+    });
+  };
+  window.addEventListener("load", markScrollable);
+  window.addEventListener("resize", markScrollable, { passive: true });
+
   /* ------------------------------------------------------------- copy code */
   $$("[data-copy]").forEach((button) => {
     button.addEventListener("click", async () => {

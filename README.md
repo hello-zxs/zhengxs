@@ -12,7 +12,7 @@ research/index.html            Three research threads with interactive figures
 notes/index.html               Field notes index
 notes/*/index.html             Three long-form notes (KaTeX, figures, code)
 publications/index.html        Thesis, notes, work in progress
-papers/morse-lens/index.html   The BSc thesis, typeset for the web
+papers/morse-lens/index.html   The BSc thesis, reading edition (canonical copy: qmentropy.com)
 cv/index.html                  Curriculum vitae (archive; the Record is canonical)
 about/index.html               Profile, method, colophon
 zh/index.html                  Chinese introduction
@@ -27,6 +27,8 @@ assets/figures/                Scientific SVG figures (computed, not traced)
 assets/fonts/                  Self-hosted Newsreader and IBM Plex
 assets/vendor/katex/           Self-hosted KaTeX
 assets/pdf/                    Web editions of the thesis and CV
+tools/make_surface_figure.py   Recomputes fig-surface-{light,dark}.svg (Python, standard library only)
+tools/check_equivalent_surface.py  Numerical check of the surface claims (numpy, scipy, sympy)
 feed.xml, sitemap.xml          RSS and sitemap
 CNAME                          zhengxs.com
 .nojekyll                      Serve files as-is on GitHub Pages
@@ -95,7 +97,10 @@ Remove any old A/AAAA/CNAME records for the apex first. DNS can take up to 24 ho
 - **Design tokens** live at the top of `assets/css/site.css` (`:root`): colours, typefaces, spacing, the navigation height.
 - **Notes** are self-contained pages. To add one: copy an existing note folder, change the title, metadata, body, figure and previous/next links; add a row to `notes/index.html` and `publications/index.html`; add the URL to `sitemap.xml` and `feed.xml`.
 - **Thesis PDF** and **CV PDF** in `assets/pdf/` are web editions printed from the HTML with Chrome's print-to-PDF. The HTML is the source of truth; reprint after substantive edits.
-- **Figures** are SVG files in `assets/figures/`. The light figures are computed from the same equations described in the notes; the dark plates are instrument-style renders for the home and research pages.
+- **Corrections are dated, not silent.** A note that changes after publication gets an entry under *Revision history* (`<ul class="revisions">`), a `Revised` date in its header and a `dateModified` in its JSON-LD. The thesis body is never rewritten: a correction goes in the `<section class="erratum">` after the abstract, and the affected sentence is marked with `†`.
+- **The thesis has one canonical URL**, `https://qmentropy.com/papers/morse-lens/`. The page here is a reading edition: its `<link rel="canonical">` points at the Lab, and it is deliberately left out of `sitemap.xml`. Citation metadata (`citation_*`, Dublin Core, `.bib`, `.ris`) lives on the Lab copy only.
+- **One identity.** Every `Person` node in the JSON-LD carries `"@id": "https://zhengxiangsheng.com/#person"`, so the three sites describe one person rather than three.
+- **Figures** are SVG files in `assets/figures/`. `fig-surface-*.svg` is generated: run `python3 tools/make_surface_figure.py` after changing the model. The light figures are computed from the same equations described in the notes; the dark plates are instrument-style renders for the home and research pages.
 - **Fonts** are self-hosted under the SIL Open Font License: [Newsreader](https://github.com/productiontype/Newsreader) and [IBM Plex](https://github.com/IBM/plex). Math is typeset with [KaTeX](https://katex.org/) (MIT).
 
 ## Content and licence

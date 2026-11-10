@@ -55,6 +55,7 @@
   "dateModified": "2026-11-10",
   "author": {
     "@type": "Person",
+    "@id": "https://zhengxiangsheng.com/#person",
     "name": "Zheng Xiangsheng"
   },
   "url": "https://zhengxs.com/notes/tracing-the-morse-lens/"
@@ -196,12 +197,12 @@ def trace(b, B, h=0.0025, x0=-1.3):
 
   <h2>Does the step size matter?</h2>
 
-  <p>Take a bundle of parallel rays with impact parameters $b=\pm0.1,\pm0.2,\dots,\pm0.8$, find the first axis crossing of each ray, and look at the mean and the RMS spread. The table compares four step sizes. The reference is not an analytic formula but the finest integration; the point is to see what changes.</p>
+  <p>Take a bundle of parallel rays with impact parameters $b=\pm0.1$ to $\pm0.8$ in steps of $0.1$, find the first axis crossing of each ray, and look at the mean and the RMS spread. The table compares four step sizes. The reference is not an analytic formula but the finest integration; the point is to see what changes.</p>
 
   <table>
-    <caption>TABLE I. Focus statistics versus RK4 step size (16 rays, $b=\pm0.1,\pm0.2,\dots,\pm0.8$; $x_0=-1.3$).</caption>
+    <caption>TABLE I. Focus statistics versus RK4 step size (16 rays, $b=\pm0.1$ to $\pm0.8$ in steps of $0.1$; $x_0=-1.3$).</caption>
     <thead>
-      <tr><th>$h$</th><th>$\bar{x}$, $B=\tfrac12$</th><th>RMS, $B=\tfrac12$</th><th>$\bar{x}$, $B=\tfrac34$</th><th>RMS, $B=\tfrac34$</th></tr>
+      <tr><th scope="col"><span class="sr-only">Step size </span>$h$</th><th scope="col">$\bar{x}$, $B=\tfrac12$</th><th scope="col">RMS, $B=\tfrac12$</th><th scope="col">$\bar{x}$, $B=\tfrac34$</th><th scope="col">RMS, $B=\tfrac34$</th></tr>
     </thead>
     <tbody>
       <tr><td>0.01</td><td>1.00033</td><td>0.00192</td><td>0.24373</td><td>0.17095</td></tr>
@@ -307,7 +308,7 @@ def trace(b, B, h=0.0025, x0=-1.3):
     <div class="footer__bottom">
       <span>© 2026 Zheng Xiangsheng</span>
       <span>zhengxs.com <span class="dotsep">/</span> Physics, geometry, light</span>
-      <span>Last updated 02 Nov 2026</span>
+      <span>Last updated 10 Nov 2026</span>
     </div>
   </div>
 </footer>
